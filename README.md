@@ -1,43 +1,86 @@
 # YuTube
 
-A lightweight self-hosted YouTube-style frontend with search, channel pages, subscriptions, watch history, Shorts view, and multi-source fallback.
+> A lightweight self-hosted YouTube-style frontend built with Node.js, Express, and vanilla JavaScript.
+
+YuTube is a lightweight video frontend that provides a familiar YouTube-style browsing experience with search, watch pages, channel pages, subscriptions, history, Shorts, and a multi-source fallback pipeline for improved resilience.
+
+## Highlights
+
+- Familiar YouTube-style interface
+- Search, watch pages, channel pages, and library views
+- Local watch history, liked videos, watch later, and subscriptions
+- Region switching support
+- Shorts browsing experience
+- Comments loading
+- Multi-source fallback pipeline:
+  - **Piped** first
+  - **Invidious** fallback
+  - **yt-dlp** as the final fallback
+- Lightweight stack: **Node.js + Express + vanilla HTML/CSS/JS**
+
+## Why this project exists
+
+Public alternative YouTube frontends and mirrors often become unstable, rate-limited, or partially unavailable over time. YuTube tries to provide a more resilient experience by normalizing multiple upstream sources behind a single frontend.
+
+Instead of depending on only one provider, YuTube uses a fallback strategy:
+
+1. Query **Piped** instances first
+2. Fallback to **Invidious** instances when needed
+3. Use **yt-dlp** as the final recovery path when public APIs fail
+
+This design improves survivability when public mirror quality changes.
 
 ## Features
 
-- YouTube-style UI with homepage, search, watch page, channel page, library, history, and subscriptions
-- Multi-source fallback strategy:
-  - Piped API first
-  - Invidious API fallback
-  - `yt-dlp` as the final fallback for resilience
+### Core browsing
+- Homepage feed
+- Search results
+- Watch page
+- Channel page
+- Related videos
 - Region switching
-- Shorts view
+
+### Personal library
+- Watch history
+- Watch later
+- Liked videos
+- Local subscriptions
+
+### Media experience
+- Shorts viewer
 - Comments loading
-- Watch later / liked videos / local subscriptions
-- Pure frontend + Node.js backend
+- Responsive UI
+- Multi-language interface support in the frontend
 
-## Stack
+## Tech stack
 
-- Node.js
-- Express
-- Vanilla HTML / CSS / JavaScript
+- **Runtime:** Node.js
+- **Backend:** Express
+- **Frontend:** Vanilla JavaScript, HTML, CSS
+- **Fallback tooling:** yt-dlp
 
-## How it works
+## Project structure
 
-The backend normalizes responses from different upstream sources into a single shape for the frontend:
+```text
+YuTube/
+├── public/
+│   ├── app.js
+│   ├── index.html
+│   └── style.css
+├── server.mjs
+├── package.json
+└── README.md
+```
 
-1. Try Piped instances
-2. Fallback to Invidious instances
-3. Fallback to `yt-dlp` if upstream APIs fail
+## Getting started
 
-This makes the app more resilient when public mirrors become unstable.
+### Requirements
 
-## Requirements
-
-- Node.js 20+
+- Node.js **20+**
 - npm
-- Optional but recommended: `yt-dlp`
+- Recommended: `yt-dlp`
 
-## Installation
+### Installation
 
 ```bash
 git clone https://github.com/CheYu0410/YuTube.git
@@ -45,26 +88,84 @@ cd YuTube
 npm install
 ```
 
-## Run
+### Run locally
 
 ```bash
-node server.mjs
+npm start
 ```
 
-Default port:
+Default server port:
 
 - `4501`
 
-Then open:
+Open in your browser:
 
 - `http://localhost:4501`
 
-## Notes
+## How it works
 
-- This project relies on public upstream instances, so availability may vary over time.
-- `yt-dlp` fallback improves reliability significantly when public API mirrors degrade.
-- User data such as history / liked videos / subscriptions is stored client-side in the browser.
+The backend aggregates and normalizes data from multiple upstream sources into a unified shape that the frontend can consume.
+
+### Upstream strategy
+
+- **Primary:** Piped API
+- **Secondary:** Invidious API
+- **Final fallback:** yt-dlp
+
+### Data flow
+
+- Search requests are attempted through public API sources first
+- Channel and watch data are normalized into a consistent internal format
+- If upstream mirrors fail, yt-dlp is used as a recovery layer
+- The frontend renders everything using a single client-side data model
+
+## Current limitations
+
+Because this project depends on public upstream services, some behavior is inherently outside the control of the app.
+
+Known limitations include:
+
+- Public Piped / Invidious instances may become unstable or unavailable
+- Some APIs may return incomplete metadata
+- Live chat is not guaranteed to be available in a stable real-time form
+- Upstream availability can vary by region and over time
+- yt-dlp fallback may be slower than direct API responses
+
+## Privacy model
+
+YuTube stores user-facing state such as:
+
+- watch history
+- liked videos
+- watch later
+- local subscriptions
+
+These are handled on the client side in the browser rather than through a user account system.
+
+## Open-source notes
+
+If you plan to fork or extend this project, useful improvement directions include:
+
+- better instance health scoring
+- configurable upstream sources
+- optional server-side caching improvements
+- Docker deployment support
+- richer README screenshots / demo section
+- live stream and chat enhancements
+
+## Roadmap ideas
+
+- [ ] Add screenshot section to README
+- [ ] Add `.env.example` if runtime configuration is introduced
+- [ ] Add Docker support
+- [ ] Add deployment guide
+- [ ] Add GitHub Actions for lint / startup validation
+- [ ] Improve live-stream-related support
 
 ## License
 
-MIT
+MIT License. See [LICENSE](./LICENSE).
+
+## Author
+
+Created by [CheYu0410](https://github.com/CheYu0410).
