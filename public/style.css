@@ -398,31 +398,29 @@ a.link { color: var(--link); }
 
 .card { cursor: pointer; position: relative; }
 .card:hover .title { color: white; }
-/* 卡片右上單一動作按鈕 */
-.card .card-actions {
+/* 卡片右上角三點按鈕 */
+.card-action-more {
   position: absolute;
   top: 8px;
   right: 8px;
-  display: flex;
-  gap: 4px;
-  z-index: 3;
-  opacity: 0;
-  transition: opacity .15s;
-}
-.card:hover .card-actions { opacity: 1; }
-.card-action {
-  width: 32px; height: 32px;
+  z-index: 10;
   background: rgba(0,0,0,0.72);
   border: none;
-  border-radius: 999px;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
   color: white;
   cursor: pointer;
   display: inline-flex;
-  align-items: center; justify-content: center;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity .15s;
+  pointer-events: none;
 }
-.card-action:hover { background: rgba(0,0,0,0.9); }
-.card-action svg { width: 18px; height: 18px; fill: currentColor; }
-.card-action-more svg { width: 20px; height: 20px; }
+.card:hover .card-action-more { opacity: 1; pointer-events: auto; }
+.card-action-more:hover { background: rgba(0,0,0,0.9); }
+.card-action-more svg { width: 18px; height: 18px; fill: currentColor; }
 
 .thumb {
   position: relative;
@@ -430,12 +428,12 @@ a.link { color: var(--link); }
   aspect-ratio: 16 / 9;
   background: var(--bg-2);
   border-radius: 12px;
-  overflow: hidden;
 }
 .thumb img {
   width: 100%; height: 100%;
   object-fit: cover;
   display: block;
+  border-radius: 12px;
   transition: transform 0.2s;
 }
 .card:hover .thumb img { transform: scale(1.02); }

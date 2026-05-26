@@ -20,7 +20,7 @@ const I18N = {
     'chip.cooking': '料理', 'chip.travel': '旅遊', 'chip.vlog': 'Vlog', 'chip.tech': '科技',
     'chip.kpop': 'K-Pop', 'chip.lofi': 'Lo-fi', 'chip.podcast': 'Podcast', 'chip.live': 'Live',
     'chip.scroll_left': '向左捲動', 'chip.scroll_right': '向右捲動',
-    'load.loading': '載入中…', 'load.error': '載入失敗', 'load.search_error': '搜尋失敗',
+    'load.loading': '載入中…', 'load.searching': '搜尋中…', 'load.error': '載入失敗', 'load.search_error': '搜尋失敗',
     'load.channel_error': '載入頻道失敗', 'load.subs_error': '無法載入訂閱頻道',
     'empty.no_results': '沒有結果', 'empty.no_history': '沒有觀看紀錄',
     'empty.history_hint': '看過的影片會在這裡', 'empty.no_content': '沒有內容',
@@ -60,6 +60,16 @@ const I18N = {
     'toast.voice_listen': '請說話…', 'toast.voice_error': '語音辨識失敗',
     'toast.voice_fail': '語音功能無法啟動',
     'search.results': '搜尋結果',
+    'watch.subscribers': '位訂閱者', 'watch.subscribe': '訂閱', 'watch.subscribed': '已訂閱',
+    'watch.like': '喜歡', 'watch.share': '分享', 'watch.save': '儲存', 'watch.saved': '已儲存',
+    'watch.views': '次觀看', 'watch.show_more': '顯示完整內容', 'watch.comments': '留言',
+    'watch.related': '相關影片', 'watch.autoplay': '自動播放',
+    'comments.no_comments': '沒有留言', 'comments.count': '則', 'comments.replies': '則回覆', 'comments.load_error': '無法載入留言',
+    'channel.about': '關於', 'channel.no_desc': '此頻道尚未提供說明', 'channel.stats': '統計資料',
+    'channel.videos': '影片', 'channel.no_live': '此頻道沒有直播', 'channel.no_shorts': '此頻道沒有 Shorts',
+    'channel.video_count': '部影片',
+    'history.clear_confirm': '確定要清除全部觀看紀錄？',
+    'toast.subscribed': '已訂閱', 'toast.unsubscribed': '已取消訂閱',
   },
   en: {
     'app.title': 'YuTube',
@@ -80,7 +90,7 @@ const I18N = {
     'chip.cooking': 'Cooking', 'chip.travel': 'Travel', 'chip.vlog': 'Vlog', 'chip.tech': 'Tech',
     'chip.kpop': 'K-Pop', 'chip.lofi': 'Lo-fi', 'chip.podcast': 'Podcasts', 'chip.live': 'Live',
     'chip.scroll_left': 'Scroll left', 'chip.scroll_right': 'Scroll right',
-    'load.loading': 'Loading…', 'load.error': 'Failed to load', 'load.search_error': 'Search failed',
+    'load.loading': 'Loading…', 'load.searching': 'Searching…', 'load.error': 'Failed to load', 'load.search_error': 'Search failed',
     'load.channel_error': 'Failed to load channel', 'load.subs_error': 'Could not load subscriptions',
     'empty.no_results': 'No results', 'empty.no_history': 'No history',
     'empty.history_hint': 'Videos you watch will appear here', 'empty.no_content': 'Nothing here',
@@ -120,6 +130,16 @@ const I18N = {
     'toast.voice_listen': 'Listening…', 'toast.voice_error': 'Voice recognition failed',
     'toast.voice_fail': 'Voice could not start',
     'search.results': 'Results for',
+    'watch.subscribers': ' subscribers', 'watch.subscribe': 'Subscribe', 'watch.subscribed': 'Subscribed',
+    'watch.like': 'Like', 'watch.share': 'Share', 'watch.save': 'Save', 'watch.saved': 'Saved',
+    'watch.views': ' views', 'watch.show_more': 'Show more', 'watch.comments': 'Comments',
+    'watch.related': 'Related videos', 'watch.autoplay': 'Autoplay',
+    'comments.no_comments': 'No comments', 'comments.count': '', 'comments.replies': 'replies', 'comments.load_error': 'Failed to load comments',
+    'channel.about': 'About', 'channel.no_desc': 'This channel has no description', 'channel.stats': 'Statistics',
+    'channel.videos': 'Videos', 'channel.no_live': 'This channel has no live streams', 'channel.no_shorts': 'This channel has no Shorts',
+    'channel.video_count': ' videos',
+    'history.clear_confirm': 'Are you sure you want to clear all watch history?',
+    'toast.subscribed': 'Subscribed to', 'toast.unsubscribed': 'Unsubscribed from',
   },
   ja: {
     'app.title': 'YuTube',
@@ -140,7 +160,7 @@ const I18N = {
     'chip.cooking': '料理', 'chip.travel': '旅行', 'chip.vlog': 'Vlog', 'chip.tech': 'テクノロジー',
     'chip.kpop': 'K-Pop', 'chip.lofi': 'Lo-fi', 'chip.podcast': 'ポッドキャスト', 'chip.live': 'ライブ',
     'chip.scroll_left': '左へスクロール', 'chip.scroll_right': '右へスクロール',
-    'load.loading': '読み込み中…', 'load.error': '読み込みに失敗しました', 'load.search_error': '検索に失敗しました',
+    'load.loading': '読み込み中…', 'load.searching': '検索中…', 'load.error': '読み込みに失敗しました', 'load.search_error': '検索に失敗しました',
     'load.channel_error': 'チャンネルの読み込みに失敗', 'load.subs_error': '登録チャンネルを読み込めません',
     'empty.no_results': '結果がありません', 'empty.no_history': '履歴がありません',
     'empty.history_hint': '視聴した動画はここに表示されます', 'empty.no_content': '何もありません',
@@ -180,6 +200,16 @@ const I18N = {
     'toast.voice_listen': 'お話しください…', 'toast.voice_error': '音声認識に失敗',
     'toast.voice_fail': '音声機能を起動できません',
     'search.results': '検索結果',
+    'watch.subscribers': '人の登録者', 'watch.subscribe': '登録', 'watch.subscribed': '登録済み',
+    'watch.like': '高評価', 'watch.share': '共有', 'watch.save': '保存', 'watch.saved': '保存済み',
+    'watch.views': '回視聴', 'watch.show_more': 'もっと見る', 'watch.comments': 'コメント',
+    'watch.related': '関連動画', 'watch.autoplay': '自動再生',
+    'comments.no_comments': 'コメントなし', 'comments.count': '件', 'comments.replies': '件の返信', 'comments.load_error': 'コメントを読み込めません',
+    'channel.about': '概要', 'channel.no_desc': 'このチャンネルには説明がありません', 'channel.stats': '統計',
+    'channel.videos': '動画', 'channel.no_live': 'このチャンネルにはライブ配信がありません', 'channel.no_shorts': 'このチャンネルにはShortsがありません',
+    'channel.video_count': '本の動画',
+    'history.clear_confirm': '視聴履歴をすべて消去しますか？',
+    'toast.subscribed': '登録済み：', 'toast.unsubscribed': '登録解除：',
   },
   ko: {
     'app.title': 'YuTube',
@@ -200,7 +230,7 @@ const I18N = {
     'chip.cooking': '요리', 'chip.travel': '여행', 'chip.vlog': 'Vlog', 'chip.tech': '기술',
     'chip.kpop': 'K-Pop', 'chip.lofi': 'Lo-fi', 'chip.podcast': '팟캐스트', 'chip.live': '라이브',
     'chip.scroll_left': '왼쪽으로 스크롤', 'chip.scroll_right': '오른쪽으로 스크롤',
-    'load.loading': '불러오는 중…', 'load.error': '불러오기 실패', 'load.search_error': '검색 실패',
+    'load.loading': '불러오는 중…', 'load.searching': '검색 중…', 'load.error': '불러오기 실패', 'load.search_error': '검색 실패',
     'load.channel_error': '채널 불러오기 실패', 'load.subs_error': '구독 채널을 불러올 수 없음',
     'empty.no_results': '결과 없음', 'empty.no_history': '시청 기록 없음',
     'empty.history_hint': '시청한 동영상이 여기에 표시됩니다', 'empty.no_content': '내용 없음',
@@ -240,6 +270,16 @@ const I18N = {
     'toast.voice_listen': '말씀하세요…', 'toast.voice_error': '음성 인식 실패',
     'toast.voice_fail': '음성 기능을 시작할 수 없음',
     'search.results': '검색 결과',
+    'watch.subscribers': '명 구독자', 'watch.subscribe': '구독', 'watch.subscribed': '구독 중',
+    'watch.like': '좋아요', 'watch.share': '공유', 'watch.save': '저장', 'watch.saved': '저장됨',
+    'watch.views': '회 시청', 'watch.show_more': '더보기', 'watch.comments': '댓글',
+    'watch.related': '관련 동영상', 'watch.autoplay': '자동 재생',
+    'comments.no_comments': '댓글 없음', 'comments.count': '개', 'comments.replies': '개의 답글', 'comments.load_error': '댓글을 불러올 수 없음',
+    'channel.about': '정보', 'channel.no_desc': '이 채널에는 설명이 없습니다', 'channel.stats': '통계',
+    'channel.videos': '동영상', 'channel.no_live': '이 채널에는 라이브 스트림이 없습니다', 'channel.no_shorts': '이 채널에는 Shorts가 없습니다',
+    'channel.video_count': '개의 동영상',
+    'history.clear_confirm': '시청 기록을 모두 지우시겠습니까?',
+    'toast.subscribed': '구독 중:', 'toast.unsubscribed': '구독 취소:',
   },
   de: {
     'app.title': 'YuTube',
@@ -260,7 +300,7 @@ const I18N = {
     'chip.cooking': 'Kochen', 'chip.travel': 'Reisen', 'chip.vlog': 'Vlog', 'chip.tech': 'Technik',
     'chip.kpop': 'K-Pop', 'chip.lofi': 'Lo-fi', 'chip.podcast': 'Podcasts', 'chip.live': 'Live',
     'chip.scroll_left': 'Nach links scrollen', 'chip.scroll_right': 'Nach rechts scrollen',
-    'load.loading': 'Lädt…', 'load.error': 'Laden fehlgeschlagen', 'load.search_error': 'Suche fehlgeschlagen',
+    'load.loading': 'Lädt…', 'load.searching': 'Sucht…', 'load.error': 'Laden fehlgeschlagen', 'load.search_error': 'Suche fehlgeschlagen',
     'load.channel_error': 'Kanal konnte nicht geladen werden', 'load.subs_error': 'Abos konnten nicht geladen werden',
     'empty.no_results': 'Keine Ergebnisse', 'empty.no_history': 'Kein Verlauf',
     'empty.history_hint': 'Angesehene Videos erscheinen hier', 'empty.no_content': 'Nichts hier',
@@ -300,6 +340,16 @@ const I18N = {
     'toast.voice_listen': 'Bitte sprechen…', 'toast.voice_error': 'Spracherkennung fehlgeschlagen',
     'toast.voice_fail': 'Sprachfunktion startet nicht',
     'search.results': 'Suchergebnisse für',
+    'watch.subscribers': ' Abonnenten', 'watch.subscribe': 'Abonnieren', 'watch.subscribed': 'Abonniert',
+    'watch.like': 'Gefällt mir', 'watch.share': 'Teilen', 'watch.save': 'Speichern', 'watch.saved': 'Gespeichert',
+    'watch.views': ' Aufrufe', 'watch.show_more': 'Mehr anzeigen', 'watch.comments': 'Kommentare',
+    'watch.related': 'Ähnliche Videos', 'watch.autoplay': 'Autoplay',
+    'comments.no_comments': 'Keine Kommentare', 'comments.count': '', 'comments.replies': 'Antworten', 'comments.load_error': 'Kommentare konnten nicht geladen werden',
+    'channel.about': 'Info', 'channel.no_desc': 'Dieser Kanal hat keine Beschreibung', 'channel.stats': 'Statistik',
+    'channel.videos': 'Videos', 'channel.no_live': 'Dieser Kanal hat keine Live-Streams', 'channel.no_shorts': 'Dieser Kanal hat keine Shorts',
+    'channel.video_count': ' Videos',
+    'history.clear_confirm': 'Möchten Sie den gesamten Verlauf wirklich löschen?',
+    'toast.subscribed': 'Abonniert:', 'toast.unsubscribed': 'Deaboniert:',
   },
 };
 function regionToLang(region) { return REGION_LANG[region] || 'zh'; }
@@ -557,6 +607,32 @@ async function hydrateChannelAvatar(el, channelId) {
 
 function fmtViews(n) {
   if (!n || n < 0) return '';
+  const lang = window.__lang || 'zh';
+  if (lang === 'en') {
+    if (n >= 1e9) return (n / 1e9).toFixed(1).replace(/\.0$/, '') + 'B';
+    if (n >= 1e6) return (n / 1e6).toFixed(1).replace(/\.0$/, '') + 'M';
+    if (n >= 1e3) return (n / 1e3).toFixed(1).replace(/\.0$/, '') + 'K';
+    return n.toLocaleString('en-US');
+  }
+  if (lang === 'ja') {
+    if (n >= 1e8) return (n / 1e8).toFixed(1).replace(/\.0$/, '') + '億';
+    if (n >= 1e4) return (n / 1e4).toFixed(1).replace(/\.0$/, '') + '万';
+    if (n >= 1e3) return (n / 1e3).toFixed(1).replace(/\.0$/, '') + '千';
+    return n.toLocaleString('ja-JP');
+  }
+  if (lang === 'ko') {
+    if (n >= 1e8) return (n / 1e8).toFixed(1).replace(/\.0$/, '') + '억';
+    if (n >= 1e4) return (n / 1e4).toFixed(1).replace(/\.0$/, '') + '만';
+    if (n >= 1e3) return (n / 1e3).toFixed(1).replace(/\.0$/, '') + '천';
+    return n.toLocaleString('ko-KR');
+  }
+  if (lang === 'de') {
+    if (n >= 1e9) return (n / 1e9).toFixed(1).replace(/\.0$/, '') + ' Mrd.';
+    if (n >= 1e6) return (n / 1e6).toFixed(1).replace(/\.0$/, '') + ' Mio.';
+    if (n >= 1e3) return (n / 1e3).toFixed(1).replace(/\.0$/, '') + ' Tsd.';
+    return n.toLocaleString('de-DE');
+  }
+  // zh (default)
   if (n >= 1e8) return (n / 1e8).toFixed(1).replace(/\.0$/, '') + '億';
   if (n >= 1e4) return (n / 1e4).toFixed(1).replace(/\.0$/, '') + '萬';
   if (n >= 1e3) return (n / 1e3).toFixed(1).replace(/\.0$/, '') + '千';
@@ -574,22 +650,57 @@ function fmtDuration(sec) {
 
 function fmtUploadDate(text) {
   if (!text) return '';
+  const lang = window.__lang || 'zh';
   if (typeof text === 'number') {
     if (text <= 0) return '';
     const days = Math.floor((Date.now() - text) / 86400000);
     if (days < 0) return '';
+    if (lang === 'en') {
+      if (days < 1) return 'Today';
+      if (days < 7) return `${days} day${days > 1 ? 's' : ''} ago`;
+      if (days < 30) return `${Math.floor(days / 7)} week${Math.floor(days / 7) > 1 ? 's' : ''} ago`;
+      if (days < 365) return `${Math.floor(days / 30)} month${Math.floor(days / 30) > 1 ? 's' : ''} ago`;
+      return `${Math.floor(days / 365)} year${Math.floor(days / 365) > 1 ? 's' : ''} ago`;
+    }
+    if (lang === 'ja') {
+      if (days < 1) return '今日';
+      if (days < 7) return `${days}日前`;
+      if (days < 30) return `${Math.floor(days / 7)}週間前`;
+      if (days < 365) return `${Math.floor(days / 30)}ヶ月前`;
+      return `${Math.floor(days / 365)}年前`;
+    }
+    if (lang === 'ko') {
+      if (days < 1) return '오늘';
+      if (days < 7) return `${days}일 전`;
+      if (days < 30) return `${Math.floor(days / 7)}주 전`;
+      if (days < 365) return `${Math.floor(days / 30)}개월 전`;
+      return `${Math.floor(days / 365)}년 전`;
+    }
+    if (lang === 'de') {
+      if (days < 1) return 'Heute';
+      if (days < 7) return `vor ${days} Tag${days > 1 ? 'en' : ''}`;
+      if (days < 30) return `vor ${Math.floor(days / 7)} Woche${Math.floor(days / 7) > 1 ? 'n' : ''}`;
+      if (days < 365) return `vor ${Math.floor(days / 30)} Monat${Math.floor(days / 30) > 1 ? 'en' : ''}`;
+      return `vor ${Math.floor(days / 365)} Jahr${Math.floor(days / 365) > 1 ? 'en' : ''}`;
+    }
+    // zh
     if (days < 1) return '今天';
     if (days < 30) return `${days} 天前`;
     if (days < 365) return `${Math.floor(days / 30)} 個月前`;
     return `${Math.floor(days / 365)} 年前`;
   }
-  return String(text).replace('Streamed ', '').replace('hours', '小時').replace('hour', '小時')
-    .replace('minutes', '分鐘').replace('minute', '分鐘')
-    .replace('days', '天').replace('day', '天')
-    .replace('weeks', '週').replace('week', '週')
-    .replace('months', '個月').replace('month', '個月')
-    .replace('years', '年').replace('year', '年')
-    .replace('ago', '前');
+  // String-based dates (e.g. "Streamed 3 hours ago")
+  const s = String(text)
+    .replace('Streamed ', lang === 'en' ? 'Streamed ' : lang === 'ja' ? '配信 ' : lang === 'ko' ? '스트리밍 ' : lang === 'de' ? 'Gestreamt ' : '直播 ')
+    .replace('hours', lang === 'en' ? 'hours' : lang === 'ja' ? '時間' : lang === 'ko' ? '시간' : lang === 'de' ? 'Stunden' : '小時')
+    .replace('hour', lang === 'en' ? 'hour' : lang === 'ja' ? '時間' : lang === 'ko' ? '시간' : lang === 'de' ? 'Stunde' : '小時')
+    .replace('minutes', lang === 'en' ? 'minutes' : lang === 'ja' ? '分' : lang === 'ko' ? '분' : lang === 'de' ? 'Minuten' : '分鐘')
+    .replace('minute', lang === 'en' ? 'minute' : lang === 'ja' ? '分' : lang === 'ko' ? '분' : lang === 'de' ? 'Minute' : '分鐘');
+  if (lang === 'en') return s.replace('days', 'days').replace('day', 'day').replace('weeks', 'weeks').replace('week', 'week').replace('months', 'months').replace('month', 'month').replace('years', 'years').replace('year', 'year').replace('ago', 'ago');
+  if (lang === 'ja') return s.replace('days', '日').replace('day', '日').replace('weeks', '週間').replace('week', '週間').replace('months', 'ヶ月').replace('month', 'ヶ月').replace('years', '年').replace('year', '年').replace('ago', '前');
+  if (lang === 'ko') return s.replace('days', '일').replace('day', '일').replace('weeks', '주').replace('week', '주').replace('months', '개월').replace('month', '개월').replace('years', '년').replace('year', '년').replace('ago', ' 전');
+  if (lang === 'de') return s.replace('days', 'Tage').replace('day', 'Tag').replace('weeks', 'Wochen').replace('week', 'Woche').replace('months', 'Monate').replace('month', 'Monat').replace('years', 'Jahre').replace('year', 'Jahr').replace('ago', 'vor');
+  return s.replace('days', '天').replace('day', '天').replace('weeks', '週').replace('week', '週').replace('months', '個月').replace('month', '個月').replace('years', '年').replace('year', '年').replace('ago', '前');
 }
 
 function videoIdFromUrl(url) {
@@ -691,11 +802,9 @@ function videoCard(v) {
         <img loading="lazy" src="${proxyImg(v.thumbnail)}" alt="">
         ${durBadge}
         ${progress > 0 ? `<div class="progress-bar" style="width:${Math.min(100, progress)}%"></div>` : ''}
-        <div class="card-actions">
-          <button class="card-action card-action-more" data-act="more" data-channel-id="${channelId || ''}" title="更多" aria-label="更多">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 7a1.75 1.75 0 1 0 0 .001A1.75 1.75 0 0 0 12 7zm0 3.25A1.75 1.75 0 1 0 12 12a1.75 1.75 0 0 0 0-1.75zm0 5a1.75 1.75 0 1 0 0 .001A1.75 1.75 0 0 0 12 15.25z"/></svg>
-          </button>
-        </div>
+        <button class="card-action-more" data-act="more" data-channel-id="${channelId || ''}" title="更多" aria-label="更多">
+          <svg viewBox="0 0 24 24"><path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/></svg>
+        </button>
       </div>
       <div class="meta">
         <div class="avatar" data-act="channel" data-channel-url="${v.uploaderUrl || ''}">${v.uploaderAvatar ? `<img src="${proxyImg(v.uploaderAvatar)}" alt="">` : ''}</div>
@@ -704,7 +813,7 @@ function videoCard(v) {
           <div class="sub">
             <span class="channel" data-act="channel" data-channel-url="${v.uploaderUrl || ''}">${escapeHtml(v.uploaderName || '')}${v.uploaderVerified ? ' ✓' : ''}</span>
             <span class="stats">
-              ${v.views > 0 ? `${fmtViews(v.views)} 次觀看` : ''}
+              ${v.views > 0 ? `${fmtViews(v.views)}${t('watch.views')}` : ''}
               ${v.views > 0 && dateText ? '<span class="dot"></span>' : ''}
               ${dateText}
             </span>
@@ -799,7 +908,7 @@ async function renderHome(region) {
     // 把哨兵加到 page 末端，觸發無限載入
     appendFeedSentinel();
   } catch (e) {
-    page.innerHTML = `<div class="empty"><div class="empty-icon">${MS_ICONS.warning}</div><div class="empty-title">載入失敗</div>${e.message}</div>`;
+    page.innerHTML = `<div class="empty"><div class="empty-icon">${MS_ICONS.warning}</div><div class="empty-title">${t('load.error')}</div>${e.message}</div>`;
   }
 }
 
@@ -827,7 +936,7 @@ async function loadMoreFeed() {
   f.loading = true;
   f.page += 1;
   const sentinel = document.getElementById('feedSentinel');
-  if (sentinel) sentinel.textContent = '載入中…';
+  if (sentinel) sentinel.textContent = t('load.loading');
   try {
     const data = await api(`/api/feed?region=${f.region}&page=${f.page}`);
     let items = (data || []).map(v => ({
@@ -844,7 +953,7 @@ async function loadMoreFeed() {
     if (items.length === 0) {
       // 連續 3 頁空就停
       f._empty = (f._empty || 0) + 1;
-      if (f._empty >= 3) { f.end = true; if (sentinel) sentinel.textContent = '已經到底了'; return; }
+      if (f._empty >= 3) { f.end = true; if (sentinel) sentinel.textContent = t('empty.no_content'); return; }
     } else {
       f._empty = 0;
       const grid = page.querySelector('.grid');
@@ -889,7 +998,7 @@ async function loadMoreSearch() {
   s.loading = true;
   s.page += 1;
   const sentinel = document.getElementById('searchSentinel');
-  if (sentinel) sentinel.textContent = '載入更多結果中…';
+  if (sentinel) sentinel.textContent = t('load.loading');
   try {
     const data = await api(`/api/search?q=${encodeURIComponent(s.q)}&page=${s.page}`);
     const items = (data.items || []).filter(v => (v.type === 'stream' || v.url?.includes('/watch?v='))).map(v => ({
@@ -904,7 +1013,7 @@ async function loadMoreSearch() {
       s._empty = (s._empty || 0) + 1;
       if (s._empty >= 2) {
         s.end = true;
-        if (sentinel) sentinel.textContent = '沒有更多結果了';
+        if (sentinel) sentinel.textContent = t('empty.no_results');
         return;
       }
     } else {
@@ -947,10 +1056,10 @@ function renderGrid(items, opts = {}) {
 async function renderSearch(q) {
   showChipbar(true);
   $('.grid-wrap').style.padding = '';
-  showLoader('搜尋中…');
+  showLoader(t('load.searching') || t('load.loading'));
   searchInput.value = q;
   if (mobileSearchInput) mobileSearchInput.value = q;
-  document.title = `搜尋：${q} - YuTube`;
+  document.title = `${t('search.results')} ${q} - YuTube`;
   state.search = { q, page: 1, loading: false, end: false, seen: new Set() };
   try {
     const data = await api('/api/search?q=' + encodeURIComponent(q) + '&page=1');
@@ -962,10 +1071,10 @@ async function renderSearch(q) {
       uploadedDate: v.uploadedDate || v.uploaded || '',
     })).filter(v => v.id);
     items.forEach(v => state.search.seen.add(v.id));
-    renderGrid(items, { title: `搜尋結果：${escapeHtml(q)}` });
+    renderGrid(items, { title: `${t('search.results')} ${escapeHtml(q)}` });
     if (items.length > 0) appendSearchSentinel();
   } catch (e) {
-    page.innerHTML = `<div class="empty"><div class="empty-icon">${MS_ICONS.warning}</div><div class="empty-title">搜尋失敗</div>${e.message}</div>`;
+    page.innerHTML = `<div class="empty"><div class="empty-icon">${MS_ICONS.warning}</div><div class="empty-title">${t('load.search_error')}</div>${e.message}</div>`;
   }
 }
 
@@ -1006,14 +1115,14 @@ async function renderWatch(id) {
             <div class="avatar watch-channel-avatar" data-act="channel" data-channel-url="${data.uploaderUrl || ''}" data-fallback-text="${escapeHtml(getFallbackInitial(data.uploader, 'Y'))}">${channelAvatar ? `<img src="${proxyImg(channelAvatar)}" alt="">` : escapeHtml(getFallbackInitial(data.uploader, 'Y'))}</div>
             <div class="ch-info">
               <div class="ch-name" data-act="channel" data-channel-url="${data.uploaderUrl || ''}">${escapeHtml(data.uploader || '')}${data.uploaderVerified ? ' ✓' : ''}</div>
-              <div class="ch-subs">${data.uploaderSubscriberCount ? fmtViews(data.uploaderSubscriberCount) + ' 位訂閱者' : ''}</div>
+              <div class="ch-subs">${data.uploaderSubscriberCount ? fmtViews(data.uploaderSubscriberCount) + ' ' + t('watch.subscribers') : ''}</div>
             </div>
-            <button class="subscribe-btn ${subbed ? 'subscribed' : ''}" id="subBtn">${subbed ? '已訂閱' : '訂閱'}</button>
+            <button class="subscribe-btn ${subbed ? 'subscribed' : ''}" id="subBtn">${subbed ? t('watch.subscribed') : t('watch.subscribe')}</button>
             <div class="action-row">
               <div class="like-group">
                 <button class="action-pill ${liked ? 'active' : ''}" id="likeBtn">
                   <svg viewBox="0 0 24 24"><path d="M18.77 11h-4.23l1.52-4.94C16.38 5.03 15.54 4 14.38 4c-.58 0-1.14.24-1.52.65L7 11h-4v10h17.43c1.06 0 1.98-.67 2.19-1.61l1.34-6c.27-1.24-.78-2.39-2.19-2.39zM7 20H4v-8h3v8z"/></svg>
-                  <span>${fmtViews(data.likes) || '喜歡'}</span>
+                  <span>${fmtViews(data.likes) || t('watch.like')}</span>
                 </button>
                 <div class="divider"></div>
                 <button class="action-pill" id="dislikeBtn">
@@ -1021,32 +1130,32 @@ async function renderWatch(id) {
                 </button>
               </div>
               <button class="action-pill" id="shareBtn">
-                <svg viewBox="0 0 24 24"><path d="M15 5.63L20.66 12 15 18.37V14h-1c-3.96 0-7.14 1-9.75 3.09 1.84-4.07 5.11-6.4 9.7-6.91l1.05-.12V5.63M14 3v7C6.45 10.74 3 16 2 21c2.5-3.5 6-5.1 12-5.1V21l9-9-9-9z"/></svg>
-                分享
+                <svg viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92z"/></svg>
+                ${t('watch.share')}
               </button>
               <button class="action-pill" id="saveBtn">
-                <svg viewBox="0 0 24 24"><path d="M${inWL ? '19 13H5v-2h14v2z' : '11 17h2v-1h1c.55 0 1-.45 1-1v-3c0-.55-.45-1-1-1h-3v-1h4V8h-2V7h-2v1h-1c-.55 0-1 .45-1 1v3c0 .55.45 1 1 1h3v1H9v2h2v1zm9-9h-1V3h-2v5H7V3H5v5H4c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm0 12H4V10h16v10z'}"/></svg>
-                ${inWL ? '已儲存' : '儲存'}
+                <svg viewBox="0 0 24 24"><path d="M17 3H7c-1.1 0-2 .9-2 2v16l7-3 7 3V5c0-1.1-.9-2-2-2zm0 15l-5-2.18L7 18V5h10v13z"/></svg>
+                ${inWL ? t('watch.saved') : t('watch.save')}
               </button>
             </div>
           </div>
           <div class="description collapsed" id="desc">
-            <div class="desc-stats">${fmtViews(data.views)} 次觀看 · ${fmtUploadDate(data.uploadDate)}</div>
+            <div class="desc-stats">${fmtViews(data.views)} ${t('watch.views')} · ${fmtUploadDate(data.uploadDate)}</div>
             <div class="desc-body">${(data.description || '').replace(/\n/g, '<br>')}</div>
-            <div class="more-btn">顯示完整內容</div>
+            <div class="more-btn">${t('watch.show_more')}</div>
           </div>
 
           <div class="comments" id="comments">
-            <h3>留言</h3>
-            <div class="comments-loader">載入留言中…</div>
+            <h3>${t('watch.comments')}</h3>
+            <div class="comments-loader">${t('load.loading')}</div>
           </div>
         </div>
 
         <aside class="related">
           <div class="watch-sidebar-head">
-            <h3 style="font-size:14px;color:var(--text-2)">相關影片</h3>
+            <h3 style="font-size:14px;color:var(--text-2)">${t('watch.related')}</h3>
             <label class="autoplay-row">
-              自動播放
+              ${t('watch.autoplay')}
               <label class="switch"><input type="checkbox" id="autoplayToggle" ${Store.settings.all.autoplay ? 'checked' : ''}><span class="slider"></span></label>
             </label>
           </div>
@@ -1065,7 +1174,7 @@ async function renderWatch(id) {
                   <div class="title">${escapeHtml(v.title || '')}</div>
                   <div class="sub">
                     <div class="channel">${escapeHtml(v.uploaderName || '')}${v.uploaderVerified ? ' ✓' : ''}</div>
-                    <div class="stats">${v.views > 0 ? fmtViews(v.views) + ' 次觀看' : ''} ${v.uploadedDate ? ' · ' + fmtUploadDate(v.uploadedDate) : ''}</div>
+                    <div class="stats">${v.views > 0 ? fmtViews(v.views) + t('watch.views') : ''} ${v.uploadedDate ? ' · ' + fmtUploadDate(v.uploadedDate) : ''}</div>
                   </div>
                 </div>
               </div>
@@ -1164,11 +1273,11 @@ async function loadComments(id) {
     const data = await api(`/api/comments/${id}`);
     const comments = data.comments || [];
     if (comments.length === 0) {
-      $('#comments').innerHTML = `<h3>留言</h3><div class="empty" style="padding:20px">沒有留言</div>`;
+      $('#comments').innerHTML = `<h3>${t('watch.comments')}</h3><div class="empty" style="padding:20px">${t('comments.no_comments')}</div>`;
       return;
     }
     $('#comments').innerHTML = `
-      <h3>${data.commentCount ? fmtViews(data.commentCount) + ' 則' : ''}留言</h3>
+      <h3>${data.commentCount ? fmtViews(data.commentCount) + ' ' + t('comments.count') : ''}${t('watch.comments')}</h3>
       ${comments.slice(0, 30).map(c => `
         <div class="comment">
           <div class="avatar">${c.thumbnail ? `<img src="${proxyImg(c.thumbnail)}" alt="">` : ''}</div>
@@ -1180,14 +1289,14 @@ async function loadComments(id) {
             <div class="c-text">${escapeHtml(c.commentText || '')}</div>
             <div class="c-stats">
               <span>${MS_ICONS.thumb_up} ${fmtViews(c.likeCount) || 0}</span>
-              ${c.replyCount ? `<span>💬 ${c.replyCount} 則回覆</span>` : ''}
+              ${c.replyCount ? `<span>💬 ${c.replyCount} ${t('comments.replies')}</span>` : ''}
             </div>
           </div>
         </div>
       `).join('')}
     `;
   } catch (e) {
-    $('#comments').innerHTML = `<h3>留言</h3><div class="empty" style="padding:20px">無法載入留言</div>`;
+    $('#comments').innerHTML = `<h3>${t('watch.comments')}</h3><div class="empty" style="padding:20px">${t('comments.load_error')}</div>`;
   }
 }
 
@@ -1224,10 +1333,10 @@ async function renderChannel(channelId, tab = 'videos') {
 
     const tabsHtml = `
       <div class="channel-tabs">
-        <button class="ch-tab ${tab==='videos'?'active':''}" data-ch-tab="videos">影片</button>
-        <button class="ch-tab ${tab==='live'?'active':''}" data-ch-tab="live">直播</button>
-        <button class="ch-tab ${tab==='shorts'?'active':''}" data-ch-tab="shorts">Shorts</button>
-        <button class="ch-tab ${tab==='about'?'active':''}" data-ch-tab="about">關於</button>
+        <button class="ch-tab ${tab==='videos'?'active':''}" data-ch-tab="videos">${t('channel.videos')}</button>
+        <button class="ch-tab ${tab==='live'?'active':''}" data-ch-tab="live">${t('sb.live')}</button>
+        <button class="ch-tab ${tab==='shorts'?'active':''}" data-ch-tab="shorts">${t('sb.shorts')}</button>
+        <button class="ch-tab ${tab==='about'?'active':''}" data-ch-tab="about">${t('channel.about')}</button>
       </div>
     `;
 
@@ -1235,15 +1344,15 @@ async function renderChannel(channelId, tab = 'videos') {
     if (tab === 'about') {
       bodyHtml = `
         <div class="empty" style="padding:24px;text-align:left;max-width:800px">
-          <h3 style="margin-bottom:12px">說明</h3>
-          <p style="color:var(--text-2);line-height:1.6;white-space:pre-wrap">${escapeHtml(baseInfo.description || '此頻道尚未提供說明')}</p>
-          <h3 style="margin-top:24px;margin-bottom:12px">統計資料</h3>
-          <p style="color:var(--text-2)">訂閱者：${fmtViews(baseInfo.subscriberCount)} 位</p>
-          <p style="color:var(--text-2)">影片數：${(baseInfo.relatedStreams || []).length}</p>
+          <h3 style="margin-bottom:12px">${t('channel.about')}</h3>
+          <p style="color:var(--text-2);line-height:1.6;white-space:pre-wrap">${escapeHtml(baseInfo.description || t('channel.no_desc'))}</p>
+          <h3 style="margin-top:24px;margin-bottom:12px">${t('channel.stats')}</h3>
+          <p style="color:var(--text-2)">${t('watch.subscribers')}：${fmtViews(baseInfo.subscriberCount)}</p>
+          <p style="color:var(--text-2)">${t('channel.video_count')}：${(baseInfo.relatedStreams || []).length}</p>
         </div>
       `;
     } else if (items.length === 0) {
-      const emptyMsg = tab === 'live' ? '此頻道沒有直播' : tab === 'shorts' ? '此頻道沒有 Shorts' : '沒有內容';
+      const emptyMsg = tab === 'live' ? t('channel.no_live') : tab === 'shorts' ? t('channel.no_shorts') : t('empty.no_content');
       bodyHtml = `<div class="empty"><div class="empty-icon">${MS_ICONS.tv}</div><div class="empty-title">${emptyMsg}</div></div>`;
     } else {
       const cls = tab === 'shorts' ? 'grid shorts' : 'grid';
@@ -1256,10 +1365,10 @@ async function renderChannel(channelId, tab = 'videos') {
         <div class="channel-avatar-large">${baseInfo.avatarUrl ? `<img src="${proxyImg(baseInfo.avatarUrl)}" alt="">` : ''}</div>
         <div class="channel-info">
           <h1>${escapeHtml(baseInfo.name || '')}${baseInfo.verified ? ' ✓' : ''}</h1>
-          <div class="ch-stats">${fmtViews(baseInfo.subscriberCount)} 位訂閱者 · ${(baseInfo.relatedStreams || []).length} 部影片</div>
+          <div class="ch-stats">${fmtViews(baseInfo.subscriberCount)} ${t('watch.subscribers')} · ${(baseInfo.relatedStreams || []).length} ${t('lib.video_count')}</div>
           <div class="ch-desc">${escapeHtml((baseInfo.description || '').slice(0, 200))}</div>
         </div>
-        <button class="subscribe-btn ${subbed ? 'subscribed' : ''}" id="chSubBtn">${subbed ? '已訂閱' : '訂閱'}</button>
+        <button class="subscribe-btn ${subbed ? 'subscribed' : ''}" id="chSubBtn">${subbed ? t('watch.subscribed') : t('watch.subscribe')}</button>
       </div>
       ${tabsHtml}
       ${bodyHtml}
@@ -1276,13 +1385,13 @@ async function renderChannel(channelId, tab = 'videos') {
       const s = Store.subs.toggle(ch);
       const btn = $('#chSubBtn');
       btn.classList.toggle('subscribed', s);
-      btn.textContent = s ? '已訂閱' : '訂閱';
-      toast(s ? `已訂閱 ${baseInfo.name}` : `已取消訂閱 ${baseInfo.name}`);
+      btn.textContent = s ? t('watch.subscribed') : t('watch.subscribe');
+      toast(s ? t('toast.subscribed') + ` ${baseInfo.name}` : t('toast.unsubscribed') + ` ${baseInfo.name}`);
       renderSubsList();
     });
     document.title = baseInfo.name + ' - YuTube';
   } catch (e) {
-    page.innerHTML = `<div class="empty"><div class="empty-icon">${MS_ICONS.warning}</div><div class="empty-title">載入頻道失敗</div>${escapeHtml(e.message)}</div>`;
+    page.innerHTML = `<div class="empty"><div class="empty-icon">${MS_ICONS.warning}</div><div class="empty-title">${t('load.channel_error')}</div>${escapeHtml(e.message)}</div>`;
   }
 }
 
@@ -1292,20 +1401,20 @@ function renderHistory() {
   setActive('route', 'history');
   const list = Store.history.list();
   renderGrid(list, {
-    title: '觀看紀錄',
-    actions: list.length ? `<button class="action-pill" id="clearHistory"><svg viewBox="0 0 24 24"><path d="M11 17H9V8h2v9zm4 0h-2V8h2v9zM6 4v1h12V4H6zm-1 4v13h14V8H5zm12 12H6V9h11v11z"/></svg>清除全部</button>` : '',
-    emptyIcon: MS_ICONS.history, emptyTitle: '沒有觀看紀錄', emptyMsg: '看過的影片會在這裡',
+    title: t('sb.history'),
+    actions: list.length ? `<button class="action-pill" id="clearHistory"><svg viewBox="0 0 24 24"><path d="M11 17H9V8h2v9zm4 0h-2V8h2v9zM6 4v1h12V4H6zm-1 4v13h14V8H5zm12 12H6V9h11v11z"/></svg>${t('history.clear_all')}</button>` : '',
+    emptyIcon: MS_ICONS.history, emptyTitle: t('empty.no_history'), emptyMsg: t('empty.history_hint'),
   });
   if (list.length) {
     $('#clearHistory').addEventListener('click', () => {
-      if (confirm('確定要清除全部觀看紀錄？')) {
+      if (confirm(t('history.clear_confirm') || '確定要清除全部觀看紀錄？')) {
         Store.history.clear();
-        toast('觀看紀錄已清除');
+        toast(t('history.cleared'));
         renderHistory();
       }
     });
   }
-  document.title = '觀看紀錄 - YuTube';
+  document.title = `${t('sb.history')} - YuTube`;
 }
 
 // 媒體庫圖示 SVG (Material Symbols, 24×24)
@@ -1326,17 +1435,17 @@ function renderLibrary(tab) {
   let list, title, icon, emptyMsg;
   if (tab === 'watch-later') {
     list = Store.watchLater.list();
-    title = '稍後觀看'; icon = MS_ICONS.schedule; emptyMsg = '在影片上點時鐘按鈕加入稍後觀看';
+    title = t('sb.watch_later'); icon = MS_ICONS.schedule; emptyMsg = t('lib.empty_wl_msg');
   } else if (tab === 'liked') {
     list = Store.liked.list();
-    title = '喜歡的影片'; icon = MS_ICONS.thumb_up; emptyMsg = '在影片上點喜歡會加入這裡';
+    title = t('sb.liked'); icon = MS_ICONS.thumb_up; emptyMsg = t('lib.empty_liked_msg');
   } else if (tab === 'subs') {
-    list = []; // TODO: 從訂閱頻道抓最新
-    title = '訂閱內容';
+    list = [];
+    title = t('lib.subs');
     const subs = Store.subs.list();
     if (subs.length === 0) {
-      page.innerHTML = `<div class="empty"><div class="empty-icon">${MS_ICONS.subscriptions}</div><div class="empty-title">還沒有訂閱任何頻道</div>到喜歡的頻道按訂閱就會出現在這裡</div>`;
-      document.title = '訂閱內容 - YuTube';
+      page.innerHTML = `<div class="empty"><div class="empty-icon">${MS_ICONS.subscriptions}</div><div class="empty-title">${t('empty.no_subs_title')}</div>${t('empty.no_subs_hint')}</div>`;
+      document.title = `${t('lib.subs')} - YuTube`;
       return;
     }
     page.innerHTML = `
@@ -1364,40 +1473,44 @@ function renderLibrary(tab) {
     return;
   } else {
     // library 主頁：總覽
+    const histCount = Store.history.list().length;
+    const wlCount = Store.watchLater.list().length;
+    const likedCount = Store.liked.list().length;
+    const subsCount = Store.subs.list().length;
     page.innerHTML = `
-      <h2 class="section-title">媒體庫</h2>
+      <h2 class="section-title">${t('lib.title')}</h2>
       <div class="library-overview">
         <button class="library-card" data-link="/history">
           <div class="lib-icon">${MS_ICONS.history}</div>
           <div class="lib-text">
-            <div class="lib-title">觀看紀錄</div>
-            <div class="lib-meta">${Store.history.list().length} 部影片</div>
+            <div class="lib-title">${t('sb.history')}</div>
+            <div class="lib-meta">${histCount} ${t('lib.video_count')}</div>
           </div>
         </button>
         <button class="library-card" data-link="/library?tab=watch-later">
           <div class="lib-icon">${MS_ICONS.schedule}</div>
           <div class="lib-text">
-            <div class="lib-title">稍後觀看</div>
-            <div class="lib-meta">${Store.watchLater.list().length} 部影片</div>
+            <div class="lib-title">${t('sb.watch_later')}</div>
+            <div class="lib-meta">${wlCount} ${t('lib.video_count')}</div>
           </div>
         </button>
         <button class="library-card" data-link="/library?tab=liked">
           <div class="lib-icon">${MS_ICONS.thumb_up}</div>
           <div class="lib-text">
-            <div class="lib-title">喜歡的影片</div>
-            <div class="lib-meta">${Store.liked.list().length} 部影片</div>
+            <div class="lib-title">${t('sb.liked')}</div>
+            <div class="lib-meta">${likedCount} ${t('lib.video_count')}</div>
           </div>
         </button>
         <button class="library-card" data-link="/library?tab=subs">
           <div class="lib-icon">${MS_ICONS.subscriptions}</div>
           <div class="lib-text">
-            <div class="lib-title">訂閱頻道</div>
-            <div class="lib-meta">${Store.subs.list().length} 個頻道</div>
+            <div class="lib-title">${t('lib.subs')}</div>
+            <div class="lib-meta">${subsCount} ${t('lib.channel_count')}</div>
           </div>
         </button>
       </div>
     `;
-    document.title = '媒體庫 - YuTube';
+    document.title = `${t('lib.title')} - YuTube`;
     return;
   }
   renderGrid(list, { title, emptyIcon: icon, emptyTitle: `沒有${title}`, emptyMsg });
@@ -2103,31 +2216,31 @@ async function renderExplore(cat) {
   } else {
     setActive('route', 'explore');
   }
-  document.title = '探索 - YuTube';
+  document.title = `${t('sb.explore')} - YuTube`;
 
   if (!cat) {
     page.innerHTML = `
-      <h2 class="section-title">探索</h2>
+      <h2 class="section-title">${t('sb.explore')}</h2>
       <div class="explore-hero">
         ${EXPLORE_CATS.map(c => `
           <div class="explore-card ${c.key}" data-link="/explore?cat=${c.key}">
-            <div>${c.icon} ${c.label}</div>
+            <div>${c.icon} ${t('chip.' + c.key) || t('sb.' + c.key) || c.label}</div>
           </div>
         `).join('')}
       </div>
-      <h2 class="section-title">熱門地區</h2>
+      <h2 class="section-title">${t('sb.regions')}</h2>
       <div class="explore-hero">
         ${[
-          { code:'TW', name:'台灣', flag:'🇹🇼' },
-          { code:'US', name:'美國', flag:'🇺🇸' },
-          { code:'JP', name:'日本', flag:'🇯🇵' },
-          { code:'KR', name:'韓國', flag:'🇰🇷' },
-          { code:'HK', name:'香港', flag:'🇭🇰' },
-          { code:'GB', name:'英國', flag:'🇬🇧' },
-          { code:'DE', name:'德國', flag:'🇩🇪' },
+          { code:'TW', flag:'🇹🇼' },
+          { code:'US', flag:'🇺🇸' },
+          { code:'JP', flag:'🇯🇵' },
+          { code:'KR', flag:'🇰🇷' },
+          { code:'HK', flag:'🇭🇰' },
+          { code:'GB', flag:'🇬🇧' },
+          { code:'DE', flag:'🇩🇪' },
         ].map(r => `
           <div class="explore-card music" data-region="${r.code}" style="background:linear-gradient(135deg,#${(Math.random()*0xffffff|0).toString(16).padStart(6,'0')},#${(Math.random()*0xffffff|0).toString(16).padStart(6,'0')})">
-            <div>${r.flag} ${r.name}</div>
+            <div>${r.flag} ${t('sb.region.' + r.code)}</div>
           </div>
         `).join('')}
       </div>
