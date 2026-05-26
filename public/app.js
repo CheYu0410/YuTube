@@ -692,17 +692,11 @@ function videoCard(v) {
         ${durBadge}
         ${progress > 0 ? `<div class="progress-bar" style="width:${Math.min(100, progress)}%"></div>` : ''}
         <div class="card-actions">
-          <button class="card-action" data-act="watch-later" title="${inWatchLater ? '從稍後觀看移除' : '稍後觀看'}">
-            <svg viewBox="0 0 24 24"><path d="${inWatchLater ? 'M19 13H5v-2h14v2z' : 'M11 17h2v-1h1c.55 0 1-.45 1-1v-3c0-.55-.45-1-1-1h-3v-1h4V8h-2V7h-2v1h-1c-.55 0-1 .45-1 1v3c0 .55.45 1 1 1h3v1H9v2h2v1zm9-9h-1V3h-2v5H7V3H5v5H4c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm0 12H4V10h16v10z'}"/></svg>
-          </button>
-          <button class="card-action" data-act="share" title="分享">
-            <svg viewBox="0 0 24 24"><path d="M15 5.63L20.66 12 15 18.37V14h-1c-3.96 0-7.14 1-9.75 3.09 1.84-4.07 5.11-6.4 9.7-6.91l1.05-.12V5.63M14 3v7C6.45 10.74 3 16 2 21c2.5-3.5 6-5.1 12-5.1V21l9-9-9-9z"/></svg>
+          <button class="card-action card-action-more" data-act="more" data-channel-id="${channelId || ''}" title="更多" aria-label="更多">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 7a1.75 1.75 0 1 0 0 .001A1.75 1.75 0 0 0 12 7zm0 3.25A1.75 1.75 0 1 0 12 12a1.75 1.75 0 0 0 0-1.75zm0 5a1.75 1.75 0 1 0 0 .001A1.75 1.75 0 0 0 12 15.25z"/></svg>
           </button>
         </div>
       </div>
-      <button class="card-more" data-act="more" data-channel-id="${channelId || ''}" title="更多">
-        <svg viewBox="0 0 24 24"><path d="M12 16.5c.83 0 1.5.67 1.5 1.5s-.67 1.5-1.5 1.5-1.5-.67-1.5-1.5.67-1.5 1.5-1.5zm0-2.5c-.83 0-1.5-.67-1.5-1.5S11.17 11 12 11s1.5.67 1.5 1.5S12.83 14 12 14zm0-3c-.83 0-1.5-.67-1.5-1.5S11.17 8 12 8s1.5.67 1.5 1.5S12.83 11 12 11z"/></svg>
-      </button>
       <div class="meta">
         <div class="avatar" data-act="channel" data-channel-url="${v.uploaderUrl || ''}">${v.uploaderAvatar ? `<img src="${proxyImg(v.uploaderAvatar)}" alt="">` : ''}</div>
         <div class="info">
@@ -734,6 +728,10 @@ function bindCards(root = page) {
           act.title = added ? '從稍後觀看移除' : '稍後觀看';
         } else if (act.dataset.act === 'share') {
           openShare(card.id, card.title);
+        } else if (act.dataset.act === 'hide') {
+          Store.hidden.add(card.id);
+          c.style.display = 'none';
+          toast('已標記為不感興趣');
         } else if (act.dataset.act === 'channel') {
           const chId = act.dataset.channelId || channelIdFromUrl(act.dataset.channelUrl);
           if (chId) navigate(`/channel/${chId}`);
@@ -2039,7 +2037,7 @@ document.addEventListener('click', (e) => {
   if (!menu || menu.hidden) return;
   const item = e.target.closest('.ctx-item');
   if (!item) {
-    if (!e.target.closest('.card-more')) closeCtxMenu();
+    if (!e.target.closest('.card-action-more')) closeCtxMenu();
     return;
   }
   const id = menu.dataset.id;

@@ -398,26 +398,31 @@ a.link { color: var(--link); }
 
 .card { cursor: pointer; position: relative; }
 .card:hover .title { color: white; }
+/* 卡片右上單一動作按鈕 */
 .card .card-actions {
   position: absolute;
-  top: 8px; right: 8px;
-  display: none;
+  top: 8px;
+  right: 8px;
+  display: flex;
   gap: 4px;
-  z-index: 2;
+  z-index: 3;
+  opacity: 0;
+  transition: opacity .15s;
 }
-.card:hover .card-actions { display: flex; }
+.card:hover .card-actions { opacity: 1; }
 .card-action {
   width: 32px; height: 32px;
-  background: rgba(0,0,0,0.7);
+  background: rgba(0,0,0,0.72);
   border: none;
-  border-radius: 50%;
+  border-radius: 999px;
   color: white;
   cursor: pointer;
   display: inline-flex;
   align-items: center; justify-content: center;
 }
 .card-action:hover { background: rgba(0,0,0,0.9); }
-.card-action svg { width: 16px; height: 16px; fill: currentColor; }
+.card-action svg { width: 18px; height: 18px; fill: currentColor; }
+.card-action-more svg { width: 20px; height: 20px; }
 
 .thumb {
   position: relative;
@@ -1177,26 +1182,6 @@ body.light .my-avatar { background: var(--accent); color: #fff; }
 .chip-scroll.right { right: 0; transform: translateY(-50%) scaleX(-1); }
 .chip-scroll[hidden] { display: none; }
 
-/* 卡片三點選單 */
-.card { position: relative; }
-.card-more {
-  position: absolute;
-  top: 4px; right: 4px;
-  background: rgba(0,0,0,0.6);
-  border: 0;
-  border-radius: 50%;
-  width: 32px; height: 32px;
-  cursor: pointer;
-  opacity: 0;
-  transition: opacity .15s;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 3;
-}
-.card:hover .card-more { opacity: 1; }
-.card-more svg { width: 18px; height: 18px; fill: #fff; }
-
 /* 觀看進度紅條 */
 .progress-bar {
   position: absolute;
@@ -1206,10 +1191,6 @@ body.light .my-avatar { background: var(--accent); color: #fff; }
   z-index: 2;
   transition: width .3s;
 }
-
-/* 卡片右上動作（覆寫舊樣式：只在 hover 顯示） */
-.card-actions { opacity: 0; transition: opacity .15s; }
-.card:hover .card-actions { opacity: 1; }
 
 /* 上下文選單 */
 .ctx-menu {

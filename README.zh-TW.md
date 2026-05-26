@@ -8,7 +8,7 @@ YuTube 是一個輕量的影音前端，提供類似 YouTube 的瀏覽體驗，�
 
 ## 預覽圖片
 
-> 可自行替換成你之後的正式截圖。
+> 以下為實際從美國地區擷取的介面截圖。
 
 ![YuTube 首頁預覽](./assets/preview-home.png)
 ![YuTube 搜尋結果預覽](./assets/preview-search.png)
