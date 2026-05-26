@@ -10,8 +10,8 @@ YuTube 是一個輕量的影音前端，提供類似 YouTube 的瀏覽體驗，�
 
 > 可自行替換成你之後的正式截圖。
 
-![YuTube 首頁預覽](./assets/preview-home.svg)
-![YuTube 搜尋結果預覽](./assets/preview-search.svg)
+![YuTube 首頁預覽](./assets/preview-home.png)
+![YuTube 搜尋結果預覽](./assets/preview-search.png)
 
 ## 特色
 

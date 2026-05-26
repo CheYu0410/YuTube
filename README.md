@@ -10,8 +10,8 @@ YuTube is a lightweight video frontend that provides a familiar YouTube-style br
 
 > Placeholder preview images are included and can be replaced with real screenshots later.
 
-![YuTube Home Preview](./assets/preview-home.svg)
-![YuTube Search Preview](./assets/preview-search.svg)
+![YuTube Home Preview](./assets/preview-home.png)
+![YuTube Search Preview](./assets/preview-search.png)
 
 ## Highlights
 
