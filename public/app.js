@@ -2011,7 +2011,8 @@ chipbar.addEventListener('click', e => {
   if (key === 'all') {
     navigate('/');
   } else {
-    navigate(`/?search=${encodeURIComponent(key)}&region=${state.region}`);
+    const searchTerm = t('chip.' + key.toLowerCase()) || key;
+    navigate(`/?search=${encodeURIComponent(searchTerm)}&region=${state.region}`);
   }
 });
 
