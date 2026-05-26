@@ -67,7 +67,7 @@ const I18N = {
     'comments.no_comments': '沒有留言', 'comments.count': '則', 'comments.replies': '則回覆', 'comments.load_error': '無法載入留言',
     'channel.about': '關於', 'channel.no_desc': '此頻道尚未提供說明', 'channel.stats': '統計資料',
     'channel.videos': '影片', 'channel.no_live': '此頻道沒有直播', 'channel.no_shorts': '此頻道沒有 Shorts',
-    'channel.video_count': '部影片',
+    'channel.video_count': '部影片', 'channel.view_channel': '查看頻道',
     'history.clear_confirm': '確定要清除全部觀看紀錄？',
     'toast.subscribed': '已訂閱', 'toast.unsubscribed': '已取消訂閱',
   },
@@ -137,7 +137,7 @@ const I18N = {
     'comments.no_comments': 'No comments', 'comments.count': '', 'comments.replies': 'replies', 'comments.load_error': 'Failed to load comments',
     'channel.about': 'About', 'channel.no_desc': 'This channel has no description', 'channel.stats': 'Statistics',
     'channel.videos': 'Videos', 'channel.no_live': 'This channel has no live streams', 'channel.no_shorts': 'This channel has no Shorts',
-    'channel.video_count': ' videos',
+    'channel.video_count': ' videos', 'channel.view_channel': 'View channel',
     'history.clear_confirm': 'Are you sure you want to clear all watch history?',
     'toast.subscribed': 'Subscribed to', 'toast.unsubscribed': 'Unsubscribed from',
   },
@@ -207,7 +207,7 @@ const I18N = {
     'comments.no_comments': 'コメントなし', 'comments.count': '件', 'comments.replies': '件の返信', 'comments.load_error': 'コメントを読み込めません',
     'channel.about': '概要', 'channel.no_desc': 'このチャンネルには説明がありません', 'channel.stats': '統計',
     'channel.videos': '動画', 'channel.no_live': 'このチャンネルにはライブ配信がありません', 'channel.no_shorts': 'このチャンネルにはShortsがありません',
-    'channel.video_count': '本の動画',
+    'channel.video_count': '本の動画', 'channel.view_channel': 'チャンネルを見る',
     'history.clear_confirm': '視聴履歴をすべて消去しますか？',
     'toast.subscribed': '登録済み：', 'toast.unsubscribed': '登録解除：',
   },
@@ -277,7 +277,7 @@ const I18N = {
     'comments.no_comments': '댓글 없음', 'comments.count': '개', 'comments.replies': '개의 답글', 'comments.load_error': '댓글을 불러올 수 없음',
     'channel.about': '정보', 'channel.no_desc': '이 채널에는 설명이 없습니다', 'channel.stats': '통계',
     'channel.videos': '동영상', 'channel.no_live': '이 채널에는 라이브 스트림이 없습니다', 'channel.no_shorts': '이 채널에는 Shorts가 없습니다',
-    'channel.video_count': '개의 동영상',
+    'channel.video_count': '개의 동영상', 'channel.view_channel': '채널 보기',
     'history.clear_confirm': '시청 기록을 모두 지우시겠습니까?',
     'toast.subscribed': '구독 중:', 'toast.unsubscribed': '구독 취소:',
   },
@@ -1000,7 +1000,7 @@ async function loadMoreSearch() {
   const sentinel = document.getElementById('searchSentinel');
   if (sentinel) sentinel.textContent = t('load.loading');
   try {
-    const data = await api(`/api/search?q=${encodeURIComponent(s.q)}&page=${s.page}`);
+    const data = await api(`/api/search?q=${encodeURIComponent(s.q)}&page=${s.page}&region=${encodeURIComponent(s.region || state.region)}`);
     const items = (data.items || []).filter(v => (v.type === 'stream' || v.url?.includes('/watch?v='))).map(v => ({
       id: videoIdFromUrl(v.url), url: v.url, title: v.title, thumbnail: v.thumbnail,
       uploaderName: v.uploaderName, uploaderAvatar: v.uploaderAvatar,
@@ -1060,9 +1060,11 @@ async function renderSearch(q) {
   searchInput.value = q;
   if (mobileSearchInput) mobileSearchInput.value = q;
   document.title = `${t('search.results')} ${q} - YuTube`;
-  state.search = { q, page: 1, loading: false, end: false, seen: new Set() };
+  const urlRegion = new URLSearchParams(location.search).get('region');
+  const searchRegion = urlRegion || state.region;
+  state.search = { q, page: 1, loading: false, end: false, seen: new Set(), region: searchRegion };
   try {
-    const data = await api('/api/search?q=' + encodeURIComponent(q) + '&page=1');
+    const data = await api('/api/search?q=' + encodeURIComponent(q) + '&page=1&region=' + encodeURIComponent(searchRegion));
     const items = (data.items || []).filter(v => v.type === 'stream' || v.url?.includes('/watch?v=')).map(v => ({
       id: videoIdFromUrl(v.url), url: v.url, title: v.title, thumbnail: v.thumbnail,
       uploaderName: v.uploaderName, uploaderAvatar: v.uploaderAvatar,
@@ -2009,7 +2011,7 @@ chipbar.addEventListener('click', e => {
   if (key === 'all') {
     navigate('/');
   } else {
-    navigate(`/?search=${encodeURIComponent(key)}`);
+    navigate(`/?search=${encodeURIComponent(key)}&region=${state.region}`);
   }
 });
 
@@ -2039,7 +2041,7 @@ document.addEventListener('click', e => {
   }
 
   const sb = e.target.closest('.sb-item[data-region]');
-  if (sb) { renderHome(sb.dataset.region); return; }
+  if (sb) { setLangByRegion(sb.dataset.region); renderHome(sb.dataset.region); return; }
 
   const toastBtn = e.target.closest('[data-toast]');
   if (toastBtn) { toast(toastBtn.dataset.toast); return; }
@@ -2271,19 +2273,19 @@ async function renderFeed() {
   showChipbar(false);
   $('.grid-wrap').style.padding = '24px';
   setActive('route', 'feed');
-  document.title = '訂閱 - YuTube';
+  document.title = `${t('sb.feed')} - YuTube`;
   const subs = Store.subs.list();
   if (subs.length === 0) {
     page.innerHTML = `
       <div class="empty">
         <div class="empty-icon">${MS_ICONS.subscriptions}</div>
-        <div class="empty-title">還沒有訂閱任何頻道</div>
-        <div class="empty-hint">在影片或頻道頁按「訂閱」就會出現在這裡</div>
-        <a class="action-pill empty-action" data-link="/">回到首頁</a>
+        <div class="empty-title">${t('empty.no_subs_title')}</div>
+        <div class="empty-hint">${t('empty.no_subs_hint')}</div>
+        <a class="action-pill empty-action" data-link="/">${t('empty.go_home')}</a>
       </div>`;
     return;
   }
-  page.innerHTML = `<h2 class="section-title">訂閱<span class="count">${subs.length} 個頻道</span></h2><div id="feedList"><div class="loader">載入中…</div></div>`;
+  page.innerHTML = `<h2 class="section-title">${t('sb.feed')}<span class="count">${subs.length} ${t('lib.channel_count')}</span></h2><div id="feedList"><div class="loader">${t('load.loading')}</div></div>`;
   const list = $('#feedList');
   list.innerHTML = '';
   // 並行抓每個頻道前 4 部
@@ -2301,7 +2303,7 @@ async function renderFeed() {
       <div class="feed-group-head">
         <div class="avatar" data-link="/channel/${ch.id}">${ch.avatar ? `<img src="${proxyImg(ch.avatar)}" alt="">` : ''}</div>
         <h3 data-link="/channel/${ch.id}" style="cursor:pointer">${escapeHtml(ch.name)}${data.verified ? ' ✓' : ''}</h3>
-        <a data-link="/channel/${ch.id}">查看頻道 ›</a>
+        <a data-link="/channel/${ch.id}">${t('channel.view_channel')} ›</a>
       </div>
       <div class="grid">${items.map(videoCard).join('')}</div>
     `;
@@ -2309,7 +2311,7 @@ async function renderFeed() {
   });
   bindCards(list);
   if (list.children.length === 0) {
-    list.innerHTML = `<div class="empty"><div class="empty-icon">${MS_ICONS.warning}</div><div class="empty-title">無法載入訂閱頻道</div></div>`;
+    list.innerHTML = `<div class="empty"><div class="empty-icon">${MS_ICONS.warning}</div><div class="empty-title">${t('load.subs_error')}</div></div>`;
   }
 }
 
