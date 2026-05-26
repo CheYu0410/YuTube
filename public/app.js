@@ -825,7 +825,7 @@ function appendFeedSentinel() {
 async function loadMoreFeed() {
   const f = state.feed;
   if (!f || f.loading || f.end) return;
-  if (location.pathname !== '/' || state.region !== f.region) return;
+  if (location.pathname !== '/' || new URLSearchParams(location.search).get('search') || state.region !== f.region) return;
   f.loading = true;
   f.page += 1;
   const sentinel = document.getElementById('feedSentinel');
@@ -867,6 +867,69 @@ async function loadMoreFeed() {
   }
 }
 
+function appendSearchSentinel() {
+  const old = document.getElementById('searchSentinel');
+  if (old) old.remove();
+  const grid = page.querySelector('.grid');
+  if (!grid) return;
+  const sentinel = document.createElement('div');
+  sentinel.id = 'searchSentinel';
+  sentinel.style.cssText = 'grid-column:1/-1;height:80px;display:flex;align-items:center;justify-content:center;color:var(--text-2);';
+  sentinel.textContent = '';
+  grid.appendChild(sentinel);
+  if (state.searchObserver) state.searchObserver.disconnect();
+  state.searchObserver = new IntersectionObserver(entries => {
+    if (entries[0].isIntersecting) loadMoreSearch();
+  }, { rootMargin: '600px' });
+  state.searchObserver.observe(sentinel);
+}
+
+async function loadMoreSearch() {
+  const s = state.search;
+  if (!s || s.loading || s.end) return;
+  if (location.pathname !== '/' || new URLSearchParams(location.search).get('search') !== s.q) return;
+  s.loading = true;
+  s.page += 1;
+  const sentinel = document.getElementById('searchSentinel');
+  if (sentinel) sentinel.textContent = '載入更多結果中…';
+  try {
+    const data = await api(`/api/search?q=${encodeURIComponent(s.q)}&page=${s.page}`);
+    const items = (data.items || []).filter(v => (v.type === 'stream' || v.url?.includes('/watch?v='))).map(v => ({
+      id: videoIdFromUrl(v.url), url: v.url, title: v.title, thumbnail: v.thumbnail,
+      uploaderName: v.uploaderName, uploaderAvatar: v.uploaderAvatar,
+      uploaderUrl: v.uploaderUrl, uploaderVerified: v.uploaderVerified,
+      duration: v.duration, views: v.views,
+      uploadedDate: v.uploadedDate || v.uploaded || '',
+    })).filter(v => v.id && !s.seen.has(v.id));
+    items.forEach(v => s.seen.add(v.id));
+    if (items.length === 0) {
+      s._empty = (s._empty || 0) + 1;
+      if (s._empty >= 2) {
+        s.end = true;
+        if (sentinel) sentinel.textContent = '沒有更多結果了';
+        return;
+      }
+    } else {
+      s._empty = 0;
+      const grid = page.querySelector('.grid');
+      if (grid) {
+        const html = items.map(videoCard).join('');
+        const tmp = document.createElement('div');
+        tmp.innerHTML = html;
+        while (tmp.firstChild) grid.insertBefore(tmp.firstChild, sentinel);
+        bindCards();
+      }
+      const countEl = page.querySelector('.section-title .count');
+      if (countEl) countEl.textContent = s.seen.size;
+    }
+    if (sentinel && !s.end) sentinel.textContent = '';
+  } catch (e) {
+    if (sentinel) sentinel.textContent = '載入更多失敗';
+  } finally {
+    s.loading = false;
+  }
+}
+
 function renderGrid(items, opts = {}) {
   const filtered = (items || []).filter(v => v.id || videoIdFromUrl(v.url));
   if (filtered.length === 0) {
@@ -888,16 +951,21 @@ async function renderSearch(q) {
   $('.grid-wrap').style.padding = '';
   showLoader('搜尋中…');
   searchInput.value = q;
+  if (mobileSearchInput) mobileSearchInput.value = q;
+  document.title = `搜尋：${q} - YuTube`;
+  state.search = { q, page: 1, loading: false, end: false, seen: new Set() };
   try {
-    const data = await api('/api/search?q=' + encodeURIComponent(q));
+    const data = await api('/api/search?q=' + encodeURIComponent(q) + '&page=1');
     const items = (data.items || []).filter(v => v.type === 'stream' || v.url?.includes('/watch?v=')).map(v => ({
       id: videoIdFromUrl(v.url), url: v.url, title: v.title, thumbnail: v.thumbnail,
       uploaderName: v.uploaderName, uploaderAvatar: v.uploaderAvatar,
       uploaderUrl: v.uploaderUrl, uploaderVerified: v.uploaderVerified,
       duration: v.duration, views: v.views,
       uploadedDate: v.uploadedDate || v.uploaded || '',
-    }));
+    })).filter(v => v.id);
+    items.forEach(v => state.search.seen.add(v.id));
     renderGrid(items, { title: `搜尋結果：${escapeHtml(q)}` });
+    if (items.length > 0) appendSearchSentinel();
   } catch (e) {
     page.innerHTML = `<div class="empty"><div class="empty-icon">${MS_ICONS.warning}</div><div class="empty-title">搜尋失敗</div>${e.message}</div>`;
   }
@@ -1767,6 +1835,8 @@ function route() {
   suggest.hidden = true;
   // 切換頁面時清掉自動播放計時器
   clearTimeout(state.autoplayTimer);
+  if (state.feedObserver) state.feedObserver.disconnect();
+  if (state.searchObserver) state.searchObserver.disconnect();
   // 切換頁面時清掉 Shorts viewer（如果有）
   if (path !== '/shorts') {
     const vw = document.getElementById('shortsViewer');

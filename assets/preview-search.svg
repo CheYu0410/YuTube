@@ -1,0 +1,35 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1600" height="900" rx="32" fill="#0D1117"/>
+  <rect x="36" y="28" width="1528" height="80" rx="22" fill="#151B23"/>
+  <rect x="68" y="48" width="148" height="40" rx="20" fill="#FF3B30"/>
+  <text x="96" y="74" fill="white" font-size="28" font-family="Arial, sans-serif" font-weight="700">YuTube</text>
+  <rect x="292" y="44" width="820" height="48" rx="24" fill="#212936" stroke="#374151"/>
+  <text x="326" y="74" fill="#CBD5E1" font-size="22" font-family="Arial, sans-serif">Lo-fi hip hop</text>
+  <rect x="1140" y="44" width="120" height="48" rx="24" fill="#2563EB"/>
+  <text x="1176" y="74" fill="white" font-size="22" font-family="Arial, sans-serif" font-weight="700">搜尋</text>
+  <rect x="48" y="140" width="1504" height="712" rx="26" fill="#111827"/>
+  <text x="88" y="194" fill="#F9FAFB" font-size="30" font-family="Arial, sans-serif" font-weight="700">搜尋結果：Lo-fi hip hop</text>
+  <text x="88" y="228" fill="#94A3B8" font-size="20" font-family="Arial, sans-serif">支援無限滾動、更多相關影片結果載入</text>
+  <g>
+    <rect x="88" y="276" width="1424" height="132" rx="24" fill="#1F2937"/>
+    <rect x="88" y="430" width="1424" height="132" rx="24" fill="#1F2937"/>
+    <rect x="88" y="584" width="1424" height="132" rx="24" fill="#1F2937"/>
+  </g>
+  <g fill="#334155">
+    <rect x="112" y="300" width="220" height="84" rx="16"/>
+    <rect x="112" y="454" width="220" height="84" rx="16"/>
+    <rect x="112" y="608" width="220" height="84" rx="16"/>
+  </g>
+  <g fill="#F8FAFC" font-family="Arial, sans-serif">
+    <text x="368" y="326" font-size="28" font-weight="700">Lo-fi hip hop beats to relax / study to</text>
+    <text x="368" y="480" font-size="28" font-weight="700">Late night coding mix · calm focus playlist</text>
+    <text x="368" y="634" font-size="28" font-weight="700">Rainy cafe ambience with mellow background music</text>
+  </g>
+  <g fill="#94A3B8" font-family="Arial, sans-serif" font-size="20">
+    <text x="368" y="362">YuTube Music · 120 萬次觀看 · 2 天前</text>
+    <text x="368" y="516">Chill Studio · 83 萬次觀看 · 5 天前</text>
+    <text x="368" y="670">Night Owl Radio · 42 萬次觀看 · 1 週前</text>
+  </g>
+  <rect x="642" y="760" width="320" height="52" rx="26" fill="#1E293B" stroke="#334155"/>
+  <text x="720" y="793" fill="#CBD5E1" font-size="24" font-family="Arial, sans-serif">載入更多結果…</text>
+</svg>

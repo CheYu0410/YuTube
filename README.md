@@ -2,7 +2,16 @@
 
 > A lightweight self-hosted YouTube-style frontend built with Node.js, Express, and vanilla JavaScript.
 
+[繁體中文 README](./README.zh-TW.md)
+
 YuTube is a lightweight video frontend that provides a familiar YouTube-style browsing experience with search, watch pages, channel pages, subscriptions, history, Shorts, and a multi-source fallback pipeline for improved resilience.
+
+## Preview
+
+> Placeholder preview images are included and can be replaced with real screenshots later.
+
+![YuTube Home Preview](./assets/preview-home.svg)
+![YuTube Search Preview](./assets/preview-search.svg)
 
 ## Highlights
 
@@ -63,13 +72,17 @@ This design improves survivability when public mirror quality changes.
 
 ```text
 YuTube/
+├── assets/
+│   ├── preview-home.svg
+│   └── preview-search.svg
 ├── public/
 │   ├── app.js
 │   ├── index.html
 │   └── style.css
 ├── server.mjs
 ├── package.json
-└── README.md
+├── README.md
+└── README.zh-TW.md
 ```
 
 ## Getting started
@@ -155,7 +168,7 @@ If you plan to fork or extend this project, useful improvement directions includ
 
 ## Roadmap ideas
 
-- [ ] Add screenshot section to README
+- [x] Add screenshot section to README
 - [ ] Add `.env.example` if runtime configuration is introduced
 - [ ] Add Docker support
 - [ ] Add deployment guide

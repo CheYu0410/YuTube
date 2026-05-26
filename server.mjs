@@ -180,11 +180,12 @@ function invChannelToPiped(c) {
 }
 
 function invSearchToPiped(arr) {
+  const items = (arr || [])
+    .filter(v => v.type === 'video')
+    .map(invVideoToPiped);
   return {
-    items: (arr || [])
-      .filter(v => v.type === 'video')
-      .map(invVideoToPiped),
-    nextpage: null,
+    items,
+    nextpage: items.length >= 20 ? 'maybe' : null,
   };
 }
 
@@ -293,15 +294,20 @@ async function ytdlpStreams(id) {
   };
 }
 
-async function ytdlpSearch(q) {
+async function ytdlpSearch(q, page = 1) {
+  const pageNum = Math.max(1, parseInt(page, 10) || 1);
+  const pageSize = 30;
+  const playlistEnd = pageNum * pageSize;
   const stdout = await ytdlpExec([
-    '--flat-playlist', '-j', '--no-warnings', '--playlist-end', '30',
-    `ytsearch30:${q}`
+    '--flat-playlist', '-j', '--no-warnings', '--playlist-end', String(playlistEnd),
+    `ytsearch${playlistEnd}:${q}`
   ], 25000);
-  const items = stdout.split('\n').filter(Boolean).map(l => {
+  const allItems = stdout.split('\n').filter(Boolean).map(l => {
     try { return JSON.parse(l); } catch { return null; }
   }).map(ytdlpVideoToPiped).filter(Boolean);
-  return { items, nextpage: null };
+  const start = (pageNum - 1) * pageSize;
+  const items = allItems.slice(start, start + pageSize);
+  return { items, nextpage: items.length === pageSize ? String(pageNum + 1) : null };
 }
 
 async function ytdlpTrending(region) {
@@ -387,25 +393,40 @@ async function getTrending(region) {
   return data;
 }
 
-async function getSearch(q) {
-  const ck = `search:${q}`;
+async function getSearch(q, page = 1) {
+  const pageNum = Math.max(1, parseInt(page, 10) || 1);
+  const ck = `search:${q}:${pageNum}`;
   const c = cacheGet(ck);
   if (c) return c;
   try {
-    const r = await tryAll(PIPED_APIS, () => `/search?q=${encodeURIComponent(q)}&filter=videos`);
-    cacheSet(ck, r.data);
-    return r.data;
+    const first = await tryAll(PIPED_APIS, () => `/search?q=${encodeURIComponent(q)}&filter=videos`);
+    let data = first.data;
+    if (pageNum > 1) {
+      let token = data?.nextpage;
+      if (!token) {
+        cacheSet(ck, { items: [], nextpage: null });
+        return { items: [], nextpage: null };
+      }
+      for (let pageIdx = 2; pageIdx <= pageNum; pageIdx += 1) {
+        const url = first.source + `/nextpage/search?nextpage=${encodeURIComponent(token)}&q=${encodeURIComponent(q)}&filter=videos`;
+        data = await httpGetJson(url, 10000);
+        token = data?.nextpage;
+        if (!data?.items?.length && !token) break;
+      }
+    }
+    cacheSet(ck, data);
+    return data;
   } catch {}
   try {
     const r = await tryAll(INVIDIOUS_APIS,
-      () => `/api/v1/search?q=${encodeURIComponent(q)}&type=video`,
+      () => `/api/v1/search?q=${encodeURIComponent(q)}&type=video&page=${pageNum}`,
       invSearchToPiped
     );
     cacheSet(ck, r.data);
     return r.data;
   } catch {}
   // 終極 fallback：yt-dlp 搜尋
-  const data = await ytdlpSearch(q);
+  const data = await ytdlpSearch(q, pageNum);
   cacheSet(ck, data);
   return data;
 }
@@ -534,9 +555,10 @@ async function getSuggest(q) {
 // === 路由 ===
 app.get('/api/search', async (req, res) => {
   const q = (req.query.q || '').trim();
-  if (!q) return res.json({ items: [] });
+  const page = Math.max(1, parseInt(req.query.page, 10) || 1);
+  if (!q) return res.json({ items: [], nextpage: null });
   try {
-    res.json(await getSearch(q));
+    res.json(await getSearch(q, page));
   } catch (e) {
     console.error('[search]', e.message);
     res.status(502).json({ error: e.message });

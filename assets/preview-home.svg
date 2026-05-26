@@ -1,0 +1,43 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1600" height="900" rx="32" fill="#0F0F10"/>
+  <rect x="32" y="28" width="1536" height="76" rx="22" fill="#18181B"/>
+  <rect x="64" y="48" width="148" height="36" rx="18" fill="#FF2D55"/>
+  <text x="92" y="72" fill="white" font-size="28" font-family="Arial, sans-serif" font-weight="700">YuTube</text>
+  <rect x="300" y="44" width="760" height="44" rx="22" fill="#232329" stroke="#34343C"/>
+  <text x="336" y="72" fill="#9CA3AF" font-size="22" font-family="Arial, sans-serif">搜尋影片、頻道、主題…</text>
+  <rect x="64" y="136" width="220" height="716" rx="26" fill="#16161A"/>
+  <rect x="320" y="136" width="1216" height="716" rx="26" fill="#131317"/>
+  <rect x="352" y="172" width="180" height="36" rx="18" fill="#27272F"/>
+  <text x="390" y="196" fill="#F5F5F5" font-size="20" font-family="Arial, sans-serif">首頁推薦</text>
+  <g>
+    <rect x="352" y="236" width="356" height="250" rx="22" fill="#1D1D23"/>
+    <rect x="728" y="236" width="356" height="250" rx="22" fill="#1D1D23"/>
+    <rect x="1104" y="236" width="356" height="250" rx="22" fill="#1D1D23"/>
+    <rect x="352" y="518" width="356" height="250" rx="22" fill="#1D1D23"/>
+    <rect x="728" y="518" width="356" height="250" rx="22" fill="#1D1D23"/>
+    <rect x="1104" y="518" width="356" height="250" rx="22" fill="#1D1D23"/>
+  </g>
+  <g fill="#2A2A33">
+    <rect x="374" y="258" width="312" height="176" rx="18"/>
+    <rect x="750" y="258" width="312" height="176" rx="18"/>
+    <rect x="1126" y="258" width="312" height="176" rx="18"/>
+    <rect x="374" y="540" width="312" height="176" rx="18"/>
+    <rect x="750" y="540" width="312" height="176" rx="18"/>
+    <rect x="1126" y="540" width="312" height="176" rx="18"/>
+  </g>
+  <g fill="#F3F4F6" font-family="Arial, sans-serif">
+    <text x="374" y="458" font-size="22" font-weight="700">熱門影片卡片</text>
+    <text x="374" y="734" font-size="22" font-weight="700">更多推薦內容</text>
+    <text x="750" y="458" font-size="22" font-weight="700">多來源 fallback</text>
+    <text x="1126" y="458" font-size="22" font-weight="700">頻道與播放頁</text>
+  </g>
+  <g fill="#A1A1AA" font-family="Arial, sans-serif" font-size="18">
+    <text x="80" y="190">• 首頁</text>
+    <text x="80" y="236">• Shorts</text>
+    <text x="80" y="282">• 訂閱內容</text>
+    <text x="80" y="328">• 觀看紀錄</text>
+    <text x="80" y="374">• 稍後觀看</text>
+    <text x="80" y="420">• 喜歡的影片</text>
+    <text x="80" y="466">• 探索</text>
+  </g>
+</svg>
