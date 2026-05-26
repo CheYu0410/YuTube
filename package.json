@@ -1,0 +1,23 @@
+{
+  "name": "yutube",
+  "version": "1.0.0",
+  "description": "A lightweight self-hosted YouTube-style frontend with search and multi-source fallback",
+  "main": "server.mjs",
+  "type": "module",
+  "scripts": {
+    "start": "node server.mjs"
+  },
+  "keywords": [
+    "youtube",
+    "invidious",
+    "piped",
+    "yt-dlp",
+    "self-hosted",
+    "video"
+  ],
+  "author": "CheYu0410",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^5.2.1"
+  }
+}

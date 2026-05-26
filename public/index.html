@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>YuTube</title>
+<link rel="stylesheet" href="/style.css?v=33">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%232962ff'/><polygon points='40,30 75,50 40,70' fill='white'/></svg>">
+</head>
+<body>
+<div class="app" id="app">
+
+<!-- ============ Topbar ============ -->
+<header class="topbar">
+  <div class="tb-left">
+    <button class="icon-btn" id="menuBtn" aria-label="選單">
+      <svg viewBox="0 0 24 24"><path d="M21 6H3V5h18v1zm0 5H3v1h18v-1zm0 6H3v1h18v-1z"/></svg>
+    </button>
+    <a class="brand" href="/" data-link="/">
+      <span class="logo"><svg viewBox="0 0 24 24"><polygon points="9,7 18,12 9,17"/></svg></span>
+      <span>YuTube</span>
+      <span class="region-tag" id="brandRegion">TW</span>
+    </a>
+  </div>
+  <div class="tb-center">
+    <form class="search" id="searchForm">
+      <div class="search-input-wrap">
+        <input type="text" id="searchInput" data-i18n-placeholder="topbar.search" placeholder="搜尋" autocomplete="off">
+        <button class="clear-btn" type="button" id="clearSearch" data-i18n-attr="aria-label:topbar.clear" aria-label="清除" hidden>
+          <svg viewBox="0 0 24 24"><path d="M12.71 12l8.15 8.15-.71.71L12 12.71l-8.15 8.15-.71-.71L11.29 12 3.15 3.85l.71-.71L12 11.29l8.15-8.15.71.71L12.71 12z"/></svg>
+        </button>
+        <div class="suggest" id="suggest" hidden></div>
+      </div>
+      <button class="search-btn" type="submit" data-i18n-attr="aria-label:topbar.search" aria-label="搜尋">
+        <svg viewBox="0 0 24 24"><path d="M20.87 20.17l-5.59-5.59C16.35 13.35 17 11.75 17 10c0-3.87-3.13-7-7-7s-7 3.13-7 7 3.13 7 7 7c1.75 0 3.35-.65 4.58-1.71l5.59 5.59.7-.71zM10 16c-3.31 0-6-2.69-6-6s2.69-6 6-6 6 2.69 6 6-2.69 6-6 6z"/></svg>
+      </button>
+      <button class="icon-btn mic-btn" type="button" data-i18n-attr="aria-label:topbar.voice" aria-label="語音搜尋" id="micBtn">
+        <svg viewBox="0 0 24 24"><path d="M12 3a3 3 0 0 0-3 3v6a3 3 0 0 0 6 0V6a3 3 0 0 0-3-3zm7 9c0 3.53-2.61 6.43-6 6.92V21h-2v-2.08C7.61 18.43 5 15.53 5 12h1c0 3.31 2.69 6 6 6s6-2.69 6-6h1z"/></svg>
+      </button>
+    </form>
+  </div>
+  <div class="tb-right">
+    <button class="icon-btn" data-i18n-attr="aria-label:topbar.kbd;title:topbar.kbd" aria-label="鍵盤快捷鍵" id="kbdBtn" title="鍵盤快捷鍵">
+      <svg viewBox="0 -960 960 960"><path d="M160-200q-33 0-56.5-23.5T80-280v-400q0-33 23.5-56.5T160-760h640q33 0 56.5 23.5T880-680v400q0 33-23.5 56.5T800-200H160Zm0-80h640v-400H160v400Zm160-40h320v-80H320v80ZM200-440h80v-80h-80v80Zm120 0h80v-80h-80v80Zm120 0h80v-80h-80v80Zm120 0h80v-80h-80v80Zm120 0h80v-80h-80v80ZM200-560h80v-80h-80v80Zm120 0h80v-80h-80v80Zm120 0h80v-80h-80v80Zm120 0h80v-80h-80v80Zm120 0h80v-80h-80v80ZM160-280v-400 400Z"/></svg>
+    </button>
+    <button class="icon-btn" data-i18n-attr="aria-label:topbar.settings;title:topbar.settings" aria-label="設定" id="settingsBtn" title="設定">
+      <svg viewBox="0 -960 960 960" fill="currentColor"><path d="m370-80-16-128q-13-5-24.5-12T307-235l-119 50L78-375l103-78q-1-7-1-13.5v-27q0-6.5 1-13.5L78-585l110-190 119 50q11-8 23-15t24-12l16-128h220l16 128q13 5 24.5 12t22.5 15l119-50 110 190-103 78q1 7 1 13.5v27q0 6.5-2 13.5l103 78-110 190-118-50q-11 8-23 15t-24 12L590-80H370Zm70-80h79l14-106q31-8 57.5-23.5T639-327l99 41 39-68-86-65q5-14 7-29.5t2-31.5q0-16-2-31.5t-7-29.5l86-65-39-68-99 42q-22-23-48.5-38.5T533-694l-13-106h-79l-14 106q-31 8-57.5 23.5T321-633l-99-41-39 68 86 64q-5 15-7 30t-2 32q0 16 2 31t7 30l-86 65 39 68 99-42q22 23 48.5 38.5T427-266l13 106Zm42-180q58 0 99-41t41-99q0-58-41-99t-99-41q-59 0-99.5 41T342-480q0 58 40.5 99t99.5 41Zm-2-140Z"/></svg>
+    </button>
+    <button class="icon-btn" data-i18n-attr="aria-label:topbar.notify;data-toast:topbar.notify_empty" aria-label="通知" data-toast="目前沒有新通知">
+      <svg viewBox="0 0 24 24"><path d="M10 20h4c0 1.1-.9 2-2 2s-2-.9-2-2zm10-2.65V19H4v-1.65l2-1.95v-5.55C6 6.4 8.5 3 12 3s6 3.4 6 5.95v5.55l2 1.85zm-1 .42l-2-1.85V8.95c0-2-2-4.95-5-4.95s-5 2.95-5 4.95v6.97l-2 1.95V18h14v-.23z"/></svg>
+    </button>
+    <button class="icon-btn avatar-btn" data-i18n-attr="aria-label:topbar.account;data-toast:topbar.account_hint" aria-label="帳號" data-toast="這是 YuTube — 不需要登入">
+      <span class="my-avatar">Y</span>
+    </button>
+  </div>
+</header>
+
+<!-- ============ Sidebar ============ -->
+<aside class="sidebar">
+  <div class="sb-section">
+    <div class="sb-item active" data-link="/" data-route="home">
+      <svg viewBox="0 0 24 24"><path d="M12 4l-9 7v10h6v-6h6v6h6V11l-9-7zm0 1.27L20 12v8h-4v-6H8v6H4v-8l8-6.73z"/></svg>
+      <span class="sb-label" data-i18n="sb.home">首頁</span>
+    </div>
+    <div class="sb-item" data-link="/shorts" data-route="shorts">
+      <svg viewBox="0 0 24 24"><path d="M10 14.65v-5.3L15 12l-5 2.65zm7.77-4.33c-.77-.32-1.2-.5-1.2-.5L18 9.06c1.84-.96 2.53-3.23 1.56-5.06s-3.24-2.53-5.07-1.56L6 6.94c-1.29.68-2.07 2.04-2 3.49.07 1.42.93 2.67 2.22 3.25.03.01 1.2.5 1.2.5L6 14.93c-1.83.97-2.53 3.24-1.56 5.07.97 1.83 3.24 2.53 5.07 1.56l8.5-4.5c1.29-.68 2.06-2.04 1.99-3.49-.07-1.42-.94-2.68-2.23-3.25z"/></svg>
+      <span class="sb-label" data-i18n="sb.shorts">Shorts</span>
+    </div>
+    <div class="sb-item" data-link="/feed" data-route="feed">
+      <svg viewBox="0 0 24 24"><path d="M10 18v-6l5 3-5 3zm7-15H7v1h10V3zm3 3H4v1h16V6zm2 3H2v12h20V9zM3 10h18v10H3V10z"/></svg>
+      <span class="sb-label" data-i18n="sb.feed">訂閱</span>
+    </div>
+  </div>
+
+  <div class="sb-section">
+    <div class="sb-title"><span data-i18n="sb.you">你</span><span class="chevron">›</span></div>
+    <div class="sb-item" data-link="/library" data-route="library">
+      <svg viewBox="0 0 24 24"><path d="M11 7l6 3.5-6 3.5V7zm10 13H4V6H3v15h18v-1zM22 3H6v16h16V3zM7 18h14V4H7v14z"/></svg>
+      <span class="sb-label" data-i18n="sb.library">媒體庫</span>
+    </div>
+    <div class="sb-item" data-link="/history" data-route="history">
+      <svg viewBox="0 0 24 24"><path d="M14.97 16.95L10 13.87V7h2v5.76l4.03 2.49-1.06 1.7zM22 12c0 5.51-4.49 10-10 10S2 17.51 2 12h1c0 4.96 4.04 9 9 9s9-4.04 9-9-4.04-9-9-9C8.81 3 5.92 4.64 4.28 7.38c-.11.18-.22.37-.31.56L3.94 8H8v1H1.96V3h1v4.74c.04-.09.07-.17.11-.25.11-.22.23-.42.35-.63C5.22 3.86 8.51 2 12 2c5.51 0 10 4.49 10 10z"/></svg>
+      <span class="sb-label" data-i18n="sb.history">觀看紀錄</span>
+    </div>
+    <div class="sb-item" data-link="/library?tab=watch-later" data-route="watch-later">
+      <svg viewBox="0 0 24 24"><path d="M14.97 16.95L10 13.87V7h2v5.76l4.03 2.49-1.06 1.7zM12 3c-4.96 0-9 4.04-9 9s4.04 9 9 9 9-4.04 9-9-4.04-9-9-9m0-1c5.52 0 10 4.48 10 10s-4.48 10-10 10S2 17.52 2 12 6.48 2 12 2z"/></svg>
+      <span class="sb-label" data-i18n="sb.watch_later">稍後觀看</span>
+    </div>
+    <div class="sb-item" data-link="/library?tab=liked" data-route="liked">
+      <svg viewBox="0 0 24 24"><path d="M18.77 11h-4.23l1.52-4.94C16.38 5.03 15.54 4 14.38 4c-.58 0-1.14.24-1.52.65L7 11h-4v10h17.43c1.06 0 1.98-.67 2.19-1.61l1.34-6c.27-1.24-.78-2.39-2.19-2.39zM7 20H4v-8h3v8z"/></svg>
+      <span class="sb-label" data-i18n="sb.liked">喜歡的影片</span>
+    </div>
+  </div>
+
+  <div class="sb-section" id="subsList">
+    <!-- 動態填入訂閱頻道 -->
+  </div>
+
+  <div class="sb-section">
+    <div class="sb-title" data-i18n="sb.explore">探索</div>
+    <div class="sb-item" data-link="/explore" data-route="explore">
+      <svg viewBox="0 0 24 24"><path d="M14.19 14.19L6 18l3.81-8.19L18 6l-3.81 8.19zm-2.06-2.06l1.45-3.13-3.13 1.45-1.45 3.13 3.13-1.45zM12 1C5.93 1 1 5.93 1 12s4.93 11 11 11 11-4.93 11-11S18.07 1 12 1zm0 21C6.49 22 2 17.51 2 12S6.49 2 12 2s10 4.49 10 10-4.49 10-10 10z"/></svg>
+      <span class="sb-label" data-i18n="sb.explore">探索</span>
+    </div>
+    <div class="sb-item" data-link="/explore?cat=music" data-cat="music">
+      <svg viewBox="0 0 24 24"><path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6zm-2 17c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3z"/></svg>
+      <span class="sb-label" data-i18n="sb.music">音樂</span>
+    </div>
+    <div class="sb-item" data-link="/explore?cat=movies" data-cat="movies">
+      <svg viewBox="0 0 24 24"><path d="M18 4l2 4h-3l-2-4h-2l2 4h-3l-2-4H8l2 4H7L5 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V4h-4z"/></svg>
+      <span class="sb-label" data-i18n="sb.movies">電影</span>
+    </div>
+    <div class="sb-item" data-link="/explore?cat=live" data-cat="live">
+      <svg viewBox="0 0 24 24"><path d="M21.582,6.186c-0.23-0.86-0.908-1.538-1.768-1.768C18.254,4,12,4,12,4S5.746,4,4.186,4.418 c-0.86,0.23-1.538,0.908-1.768,1.768C2,7.746,2,12,2,12s0,4.254,0.418,5.814c0.23,0.86,0.908,1.538,1.768,1.768 C5.746,20,12,20,12,20s6.254,0,7.814-0.418c0.861-0.23,1.538-0.908,1.768-1.768C22,16.254,22,12,22,12S22,7.746,21.582,6.186z M10,15.464V8.536L16,12L10,15.464z"/></svg>
+      <span class="sb-label" data-i18n="sb.live">直播</span>
+    </div>
+    <div class="sb-item" data-link="/explore?cat=gaming" data-cat="gaming">
+      <svg viewBox="0 0 24 24"><path d="M11 14H9v-3H6V9h3V6h2v3h3v2h-3v3zm5.5-1c.83 0 1.5-.67 1.5-1.5S17.33 10 16.5 10 15 10.67 15 11.5s.67 1.5 1.5 1.5zm2-3c.83 0 1.5-.67 1.5-1.5S19.33 7 18.5 7 17 7.67 17 8.5 17.67 10 18.5 10zm.5 8H5c-2.76 0-5-2.24-5-5V8c0-2.76 2.24-5 5-5h14c2.76 0 5 2.24 5 5v5c0 2.76-2.24 5-5 5z"/></svg>
+      <span class="sb-label" data-i18n="sb.gaming">遊戲</span>
+    </div>
+    <div class="sb-item" data-link="/explore?cat=news" data-cat="news">
+      <svg viewBox="0 0 24 24"><path d="M21 5H3v14h18V5zm-1 13H4V6h16v12zM6 8h6v6H6V8zm7 8H6v-1h7v1zm5 0h-4v-1h4v1zm0-2h-4v-1h4v1zm0-2h-4v-1h4v1zm0-2h-4V9h4v1z"/></svg>
+      <span class="sb-label" data-i18n="sb.news">新聞</span>
+    </div>
+    <div class="sb-item" data-link="/explore?cat=sports" data-cat="sports">
+      <svg viewBox="0 0 24 24"><path d="M12 2C6.49 2 2 6.49 2 12s4.49 10 10 10 10-4.49 10-10S17.51 2 12 2zm5.16 6.55l-1.83.61L13 6.93V4.05c2.16.21 4.06 1.32 5.32 2.96l-1.16 1.54zM11 4.05v2.88L8.67 9.16l-1.83-.61-1.16-1.54C6.94 5.37 8.84 4.26 11 4.05zm-7 7.95c0-.86.16-1.68.42-2.45l1.45.49.91 2.83-1.65 2.16-.84.06C4.16 13.99 4 13.01 4 12zm5.32 7.34l-1.07-1.59 1.04-2h4.42l1.04 2-1.07 1.59c-.97.42-2.04.66-3.16.66-1.12 0-2.19-.24-3.2-.66zm9.92-3.97l-.84-.06-1.65-2.16.91-2.83 1.45-.49c.26.77.42 1.59.42 2.45 0 1.01-.16 1.99-.45 2.91l-.16.18z"/></svg>
+      <span class="sb-label" data-i18n="sb.sports">體育</span>
+    </div>
+    <div class="sb-item" data-link="/explore?cat=learning" data-cat="learning">
+      <svg viewBox="0 0 24 24"><path d="M12 3L1 9l4 2.18v6L12 21l7-3.82v-6l2-1.09V17h1V9L12 3zm6.82 6L12 12.72 5.18 9 12 5.28 18.82 9zM17 16.99l-5 2.72-5-2.72v-4.9L12 14l5-2.73v4.72z"/></svg>
+      <span class="sb-label" data-i18n="sb.learning">學習</span>
+    </div>
+    <div class="sb-item" data-link="/explore?cat=fashion" data-cat="fashion">
+      <svg viewBox="0 0 24 24"><path d="M21 5l-9-4-9 4v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5z"/></svg>
+      <span class="sb-label" data-i18n="sb.fashion">時尚</span>
+    </div>
+    <div class="sb-item" data-link="/explore?cat=podcasts" data-cat="podcasts">
+      <svg viewBox="0 0 24 24"><path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3zm5.3-3c0 3-2.54 5.1-5.3 5.1S6.7 14 6.7 11H5c0 3.41 2.72 6.23 6 6.72V21h2v-3.28c3.28-.49 6-3.31 6-6.72h-1.7z"/></svg>
+      <span class="sb-label" data-i18n="sb.podcasts">Podcast</span>
+    </div>
+  </div>
+
+  <div class="sb-section">
+    <div class="sb-title" data-i18n="sb.regions">熱門地區</div>
+    <div class="sb-item" data-region="TW"><span class="sb-flag">🇹🇼</span><span class="sb-label" data-i18n="sb.region.TW">台灣</span></div>
+    <div class="sb-item" data-region="US"><span class="sb-flag">🇺🇸</span><span class="sb-label" data-i18n="sb.region.US">美國</span></div>
+    <div class="sb-item" data-region="JP"><span class="sb-flag">🇯🇵</span><span class="sb-label" data-i18n="sb.region.JP">日本</span></div>
+    <div class="sb-item" data-region="KR"><span class="sb-flag">🇰🇷</span><span class="sb-label" data-i18n="sb.region.KR">韓國</span></div>
+    <div class="sb-item" data-region="HK"><span class="sb-flag">🇭🇰</span><span class="sb-label" data-i18n="sb.region.HK">香港</span></div>
+    <div class="sb-item" data-region="GB"><span class="sb-flag">🇬🇧</span><span class="sb-label" data-i18n="sb.region.GB">英國</span></div>
+    <div class="sb-item" data-region="DE"><span class="sb-flag">🇩🇪</span><span class="sb-label" data-i18n="sb.region.DE">德國</span></div>
+  </div>
+
+  <div class="sb-section">
+    <div class="sb-footer">
+      <span data-i18n="sb.footer">© 2026 YuTube · 基於 Piped API</span> · <a href="https://github.com/CheYu0410" target="_blank">CheYu0410</a>
+    </div>
+  </div>
+</aside>
+
+<!-- ============ Mini sidebar tooltip ============ -->
+<div class="mini-tooltip" id="miniTooltip" hidden></div>
+
+<!-- ============ Main content ============ -->
+<main class="content" id="content">
+  <div class="chipbar" id="chipbar">
+    <button class="chip-scroll left" id="chipLeft" data-i18n-attr="aria-label:chip.scroll_left" aria-label="向左捲動">
+      <svg viewBox="0 0 24 24"><path d="M14 6.41L12.58 5l-7 7 7 7L14 17.59 8.42 12 14 6.41z"/></svg>
+    </button>
+    <div class="chip-track" id="chipTrack">
+      <button class="chip active" data-chip="all" data-i18n="chip.all">全部</button>
+      <button class="chip" data-chip="音樂" data-i18n="chip.music">音樂</button>
+      <button class="chip" data-chip="MV" data-i18n="chip.mv">MV</button>
+      <button class="chip" data-chip="遊戲" data-i18n="chip.gaming">遊戲</button>
+      <button class="chip" data-chip="新聞" data-i18n="chip.news">新聞</button>
+      <button class="chip" data-chip="喜劇" data-i18n="chip.comedy">喜劇</button>
+      <button class="chip" data-chip="動畫" data-i18n="chip.anime">動畫</button>
+      <button class="chip" data-chip="電影" data-i18n="chip.movies">電影</button>
+      <button class="chip" data-chip="料理" data-i18n="chip.cooking">料理</button>
+      <button class="chip" data-chip="旅遊" data-i18n="chip.travel">旅遊</button>
+      <button class="chip" data-chip="vlog" data-i18n="chip.vlog">Vlog</button>
+      <button class="chip" data-chip="科技" data-i18n="chip.tech">科技</button>
+      <button class="chip" data-chip="K-Pop" data-i18n="chip.kpop">K-Pop</button>
+      <button class="chip" data-chip="lo-fi" data-i18n="chip.lofi">Lo-fi</button>
+      <button class="chip" data-chip="Podcast" data-i18n="chip.podcast">Podcast</button>
+      <button class="chip" data-chip="Live" data-i18n="chip.live">Live</button>
+    </div>
+    <button class="chip-scroll right" id="chipRight" data-i18n-attr="aria-label:chip.scroll_right" aria-label="向右捲動">
+      <svg viewBox="0 0 24 24"><path d="M9.41 6L8 7.41 12.58 12 8 16.59 9.41 18l6-6z"/></svg>
+    </button>
+  </div>
+
+  <div class="subs-strip" id="subsStrip" hidden>
+    <button class="subs-scroll left" id="subsLeft" aria-label="向左捲動訂閱頻道">
+      <svg viewBox="0 0 24 24"><path d="M14 6.41L12.58 5l-7 7 7 7L14 17.59 8.42 12 14 6.41z"/></svg>
+    </button>
+    <div class="subs-track" id="subsTrack"></div>
+    <button class="subs-scroll right" id="subsRight" aria-label="向右捲動訂閱頻道">
+      <svg viewBox="0 0 24 24"><path d="M9.41 6L8 7.41 12.58 12 8 16.59 9.41 18l6-6z"/></svg>
+    </button>
+  </div>
+
+  <div class="grid-wrap">
+    <div id="page">
+      <div class="loader" data-i18n="load.loading">載入中…</div>
+    </div>
+  </div>
+</main>
+
+<!-- ============ Toast ============ -->
+<div class="toast" id="toast" hidden></div>
+
+<!-- ============ Card context menu ============ -->
+<div class="ctx-menu" id="ctxMenu" hidden>
+  <button class="ctx-item" data-ctx="watch-later">
+    <svg viewBox="0 0 24 24"><path d="M14.97 16.95L10 13.87V7h2v5.76l4.03 2.49-1.06 1.7zM22 12c0 5.51-4.49 10-10 10S2 17.51 2 12 6.49 2 12 2s10 4.49 10 10z"/></svg>
+    <span data-i18n="ctx.watch_later">稍後觀看</span>
+  </button>
+  <button class="ctx-item" data-ctx="copy">
+    <svg viewBox="0 0 24 24"><path d="M14 12h-4v3h4v-3zm0-4h-4v3h4V8zm-1.95-7L4 9.05V20a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V3h-7.95z"/></svg>
+    <span data-i18n="ctx.copy">複製連結</span>
+  </button>
+  <button class="ctx-item" data-ctx="share">
+    <svg viewBox="0 0 24 24"><path d="M15 5.63L20.66 12 15 18.37V14h-1c-3.96 0-7.14 1-9.75 3.09 1.84-4.07 5.11-6.4 9.7-6.91l1.05-.12V5.63"/></svg>
+    <span data-i18n="ctx.share">分享</span>
+  </button>
+  <button class="ctx-item" data-ctx="hide">
+    <svg viewBox="0 0 24 24"><path d="M19 13H5v-2h14v2z"/></svg>
+    <span data-i18n="ctx.hide">不感興趣</span>
+  </button>
+  <button class="ctx-item" data-ctx="block-channel">
+    <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8 0-1.85.63-3.55 1.69-4.9L16.9 18.31C15.55 19.37 13.85 20 12 20zm6.31-3.1L7.1 5.69C8.45 4.63 10.15 4 12 4c4.41 0 8 3.59 8 8 0 1.85-.63 3.55-1.69 4.9z"/></svg>
+    <span data-i18n="ctx.block">封鎖頻道</span>
+  </button>
+</div>
+
+<!-- ============ Share modal ============ -->
+<div class="modal" id="shareModal" hidden>
+  <div class="modal-backdrop"></div>
+  <div class="modal-box">
+    <div class="modal-head">
+      <h3 data-i18n="share.title">分享</h3>
+      <button class="icon-btn" data-close-modal>
+        <svg viewBox="0 0 24 24"><path d="M12.71 12l8.15 8.15-.71.71L12 12.71l-8.15 8.15-.71-.71L11.29 12 3.15 3.85l.71-.71L12 11.29l8.15-8.15.71.71L12.71 12z"/></svg>
+      </button>
+    </div>
+    <div class="share-buttons">
+      <button class="share-btn" data-share="copy"><span class="share-icon">🔗</span><span data-i18n="share.copy">複製連結</span></button>
+      <button class="share-btn" data-share="x"><span class="share-icon">𝕏</span>X</button>
+      <button class="share-btn" data-share="fb"><span class="share-icon" style="color:#1877f2">f</span>Facebook</button>
+      <button class="share-btn" data-share="line"><span class="share-icon" style="color:#00c300">L</span>LINE</button>
+      <button class="share-btn" data-share="telegram"><span class="share-icon" style="color:#229ed9">✈</span>Telegram</button>
+      <button class="share-btn" data-share="whatsapp"><span class="share-icon" style="color:#25d366">W</span>WhatsApp</button>
+      <button class="share-btn" data-share="email"><span class="share-icon">✉</span><span data-i18n="share.email">Email</span></button>
+      <button class="share-btn" data-share="reddit"><span class="share-icon" style="color:#ff4500">R</span>Reddit</button>
+    </div>
+    <label class="share-time">
+      <input type="checkbox" id="shareAtTime"> <span data-i18n="share.from_time">從目前時間開始</span>
+    </label>
+    <div class="share-link" id="shareLink"></div>
+  </div>
+</div>
+
+<!-- ============ Settings modal ============ -->
+<div class="modal" id="settingsModal" hidden>
+  <div class="modal-backdrop"></div>
+  <div class="modal-box settings-modal-box">
+    <div class="modal-head">
+      <h3 data-i18n="set.title">設定</h3>
+      <button class="icon-btn" data-close-modal>
+        <svg viewBox="0 0 24 24"><path d="M12.71 12l8.15 8.15-.71.71L12 12.71l-8.15 8.15-.71-.71L11.29 12 3.15 3.85l.71-.71L12 11.29l8.15-8.15.71.71L12.71 12z"/></svg>
+      </button>
+    </div>
+    <div class="settings">
+      <div class="setting-row">
+        <div>
+          <div class="set-label" data-i18n="set.theme">主題</div>
+          <div class="set-hint" data-i18n="set.theme_hint">深色或淺色介面</div>
+        </div>
+        <select id="setTheme">
+          <option value="dark" data-i18n="set.dark">深色</option>
+          <option value="light" data-i18n="set.light">淺色</option>
+          <option value="auto" data-i18n="set.auto">跟隨系統</option>
+        </select>
+      </div>
+      <div class="setting-row">
+        <div>
+          <div class="set-label" data-i18n="set.region">預設地區</div>
+          <div class="set-hint" data-i18n="set.region_hint">首頁熱門影片與介面語言</div>
+        </div>
+        <select id="setRegion">
+          <option value="TW">🇹🇼 <span data-i18n="sb.region.TW">台灣</span></option>
+          <option value="US">🇺🇸 <span data-i18n="sb.region.US">美國</span></option>
+          <option value="JP">🇯🇵 <span data-i18n="sb.region.JP">日本</span></option>
+          <option value="KR">🇰🇷 <span data-i18n="sb.region.KR">韓國</span></option>
+          <option value="HK">🇭🇰 <span data-i18n="sb.region.HK">香港</span></option>
+          <option value="GB">🇬🇧 <span data-i18n="sb.region.GB">英國</span></option>
+          <option value="DE">🇩🇪 <span data-i18n="sb.region.DE">德國</span></option>
+        </select>
+      </div>
+      <div class="setting-row setting-row-inline setting-row-toggle">
+        <div>
+          <div class="set-label" data-i18n="set.autoplay">自動播放下一部</div>
+          <div class="set-hint" data-i18n="set.autoplay_hint">看完影片自動播放下一個相關影片</div>
+        </div>
+        <label class="switch"><input type="checkbox" id="setAutoplay"><span class="slider"></span></label>
+      </div>
+      <div class="setting-row setting-row-inline setting-row-toggle">
+        <div>
+          <div class="set-label" data-i18n="set.keep_scroll">重新整理時記住捲動位置</div>
+          <div class="set-hint" data-i18n="set.keep_scroll_hint">回首頁時保持原本看到的位置</div>
+        </div>
+        <label class="switch"><input type="checkbox" id="setKeepScroll"><span class="slider"></span></label>
+      </div>
+      <div class="setting-row setting-row-inline setting-row-toggle">
+        <div>
+          <div class="set-label" data-i18n="set.hide_shorts">隱藏 Shorts</div>
+          <div class="set-hint" data-i18n="set.hide_shorts_hint">在首頁隱藏 60 秒以下短片</div>
+        </div>
+        <label class="switch"><input type="checkbox" id="setHideShorts"><span class="slider"></span></label>
+      </div>
+      <div class="setting-row">
+        <div>
+          <div class="set-label">使用者頭像</div>
+          <div class="set-hint">可自訂文字、主色或圖片網址；留空時使用預設藍色頭像</div>
+        </div>
+        <div class="avatar-settings">
+          <input id="avatarText" class="settings-input small" type="text" maxlength="2" placeholder="YU">
+          <input id="avatarColor" class="settings-color" type="color" value="#2962ff" aria-label="頭像顏色">
+          <input id="avatarImage" class="settings-input" type="url" placeholder="https://.../avatar.jpg">
+        </div>
+      </div>
+      <div class="setting-row setting-row-inline setting-row-action danger">
+        <div>
+          <div class="set-label" data-i18n="set.clear_data">清除所有資料</div>
+          <div class="set-hint" data-i18n="set.clear_data_hint">訂閱、紀錄、稍後觀看、喜歡的影片</div>
+        </div>
+        <button class="action-pill danger" id="clearAllData" data-i18n="set.clear">清除</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<nav class="mobile-nav" id="mobileNav" aria-label="Mobile navigation">
+  <button class="mobile-nav-item active" data-link="/" data-route="home">
+    <svg viewBox="0 0 24 24"><path d="M12 4l-9 7v10h6v-6h6v6h6V11l-9-7z"/></svg>
+    <span data-i18n="sb.home">首頁</span>
+  </button>
+  <button class="mobile-nav-item" id="mobileSearchBtn" type="button">
+    <svg viewBox="0 0 24 24"><path d="M20.87 20.17l-5.59-5.59C16.35 13.35 17 11.75 17 10c0-3.87-3.13-7-7-7s-7 3.13-7 7 3.13 7 7 7c1.75 0 3.35-.65 4.58-1.71l5.59 5.59.7-.71zM10 16c-3.31 0-6-2.69-6-6s2.69-6 6-6 6 2.69 6 6-2.69 6-6 6z"/></svg>
+    <span data-i18n="topbar.search">搜尋</span>
+  </button>
+  <button class="mobile-nav-item" data-link="/shorts" data-route="shorts">
+    <svg viewBox="0 0 24 24"><path d="M10 14.65v-5.3L15 12l-5 2.65zm7.77-4.33c-.77-.32-1.2-.5-1.2-.5L18 9.06c1.84-.96 2.53-3.23 1.56-5.06s-3.24-2.53-5.07-1.56L6 6.94c-1.29.68-2.07 2.04-2 3.49.07 1.42.93 2.67 2.22 3.25.03.01 1.2.5 1.2.5L6 14.93c-1.83.97-2.53 3.24-1.56 5.07.97 1.83 3.24 2.53 5.07 1.56l8.5-4.5c1.29-.68 2.06-2.04 1.99-3.49-.07-1.42-.94-2.68-2.23-3.25z"/></svg>
+    <span data-i18n="sb.shorts">Shorts</span>
+  </button>
+  <button class="mobile-nav-item" data-link="/feed" data-route="feed">
+    <svg viewBox="0 0 24 24"><path d="M10 18v-6l5 3-5 3zm7-15H7v1h10V3zm3 3H4v1h16V6zm2 3H2v12h20V9zM3 10h18v10H3V10z"/></svg>
+    <span data-i18n="sb.feed">訂閱</span>
+  </button>
+  <button class="mobile-nav-item" data-link="/library" data-route="library">
+    <svg viewBox="0 0 24 24"><path d="M11 7l6 3.5-6 3.5V7zm10 13H4V6H3v15h18v-1zM22 3H6v16h16V3zM7 18h14V4H7v14z"/></svg>
+    <span data-i18n="sb.library">媒體庫</span>
+  </button>
+</nav>
+
+<div class="mobile-search-sheet" id="mobileSearchSheet" hidden>
+  <div class="mobile-search-backdrop"></div>
+  <div class="mobile-search-panel">
+    <div class="mobile-search-head">
+      <button class="icon-btn" id="mobileSearchClose" aria-label="關閉搜尋">
+        <svg viewBox="0 0 24 24"><path d="M19 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H19v-2z"/></svg>
+      </button>
+      <form class="mobile-search-form" id="mobileSearchForm">
+        <input id="mobileSearchInput" type="text" placeholder="搜尋 YuTube" autocomplete="off">
+      </form>
+    </div>
+    <div class="mobile-search-suggest" id="mobileSuggest"></div>
+  </div>
+</div>
+
+<!-- ============ Keyboard shortcuts modal ============ -->
+<div class="modal" id="kbdModal" hidden>
+  <div class="modal-backdrop"></div>
+  <div class="modal-box">
+    <div class="modal-head">
+      <h3 data-i18n="kbd.title">鍵盤快捷鍵</h3>
+      <button class="icon-btn" data-close-modal>
+        <svg viewBox="0 0 24 24"><path d="M12.71 12l8.15 8.15-.71.71L12 12.71l-8.15 8.15-.71-.71L11.29 12 3.15 3.85l.71-.71L12 11.29l8.15-8.15.71.71L12.71 12z"/></svg>
+      </button>
+    </div>
+    <div class="kbd-list">
+      <div class="kbd-row"><span data-i18n="kbd.focus_search">聚焦搜尋框</span><kbd>/</kbd></div>
+      <div class="kbd-row"><span data-i18n="kbd.close">關閉視窗 / 取消</span><kbd>Esc</kbd></div>
+      <div class="kbd-row"><span data-i18n="kbd.show_help">顯示這個視窗</span><kbd>?</kbd></div>
+      <div class="kbd-row"><span data-i18n="kbd.toggle_sidebar">切換 sidebar</span><kbd>z</kbd></div>
+      <div class="kbd-row"><span data-i18n="kbd.go_home">回首頁</span><kbd>g</kbd> <kbd>h</kbd></div>
+      <div class="kbd-row"><span data-i18n="kbd.go_library">媒體庫</span><kbd>g</kbd> <kbd>l</kbd></div>
+      <div class="kbd-row"><span data-i18n="kbd.go_history">觀看紀錄</span><kbd>g</kbd> <kbd>r</kbd></div>
+      <div class="kbd-row"><span data-i18n="kbd.go_wl">稍後觀看</span><kbd>g</kbd> <kbd>w</kbd></div>
+      <div class="kbd-row"><span data-i18n="kbd.toggle_theme">切換主題</span><kbd>g</kbd> <kbd>t</kbd></div>
+      <div class="kbd-row"><span data-i18n="kbd.open_settings">開啟設定</span><kbd>g</kbd> <kbd>s</kbd></div>
+    </div>
+  </div>
+</div>
+
+</div>
+
+<script src="/app.js?v=35"></script>
+</body>
+</html>
